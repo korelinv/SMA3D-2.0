@@ -1,0 +1,861 @@
+<div
+	class="regularForm snapshotSelectorTemplate"
+	style="width: 900px; height: 672px;">
+
+
+	<div id="window-header">
+		<div class="caption-wrapper">
+			<div class="caption">
+				Новый сервис
+			</div>
+		</div>
+		<div class="spacer" style="width: 300px;"></div>
+		<pl-tab-button class="display-table-cell" index="0" caption="Описание" current="page" width="200"></pl-tab-button>
+		<pl-tab-button class="display-table-cell" index="1" caption="Дескриптор" current="page" width="200"></pl-tab-button>
+		<pl-tab-button class="display-table-cell" index="2" caption="Обновление" current="page" width="200"></pl-tab-button>
+	</div>
+
+
+
+	<div style="
+		width: 100%;
+		height: 456px;
+		overflow: auto;">
+		<div ng-if="page == 0">
+			<div style="
+				height: 128px;
+				padding-left: 24px;
+				padding-top: 24px;
+				position: relative;">
+				<div style="
+					height: 128px;
+					float: left;">
+					<img
+						style="
+							width: 128px;
+							height: 128px;"
+						ng-src="descriptor.icon"
+						ng-init="unfolded = false"
+						ng-click="unfolded = !unfolded">
+					<div
+						style="
+							width: 300px;
+							height: 24px;
+							position: absolute;
+							left:160px;
+							top: 24px;"
+						ng-show="unfolded">
+						<input
+							type="text"
+							style="
+								width: 100%;
+								height: 100%;
+								border: 1px solid #FFD740;
+								font-size: 10pt;"
+							placeholder="http://..."
+							ng-model="descriptor.icon"/>
+					</div>
+				</div>
+				<div style="
+					height: 128px;
+					float: left;
+					padding-left: 16px;">
+					<div style="
+						height: 48px;
+						padding-top: 56px;">
+						<div style="
+							height: 48px;
+							display: table-cell;
+							vertical-align: bottom;">
+							<input
+								type="text"
+								style="
+									width: 648px;
+									font-size: 18pt;
+									margin: 0px;
+									padding: 0px;
+									border: 0px solid #FFFFFF;"
+								placeholder="Название сервиса"
+								ng-model="descriptor.name"/>
+						</div>
+					</div>
+					<div style="height: 24px;">
+						<div style="
+							height: 24px;
+							display: table-cell;
+							vertical-align: middle;
+							font-size: 10pt;
+							color: #757575;">
+							{{descriptor.id}}
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div style="
+				padding-left: 24px;
+				padding-top: 12px;">
+				<span style="
+					font-size: 10pt;
+					padding-right: 8px;">Тип сервиса</span>
+				<span style="font-size: 10pt;">GET</span>
+				<input
+					type="radio"
+					value="GET"
+					style="font-size: 10pt;"
+					ng-model="descriptor.service.type"/>
+				<span style="font-size: 10pt;">POST</span>
+				<input
+					type="radio"
+					value="POST"
+					style="font-size: 10pt;"
+					ng-model="descriptor.service.type"/>
+			</div>
+
+			<div style="
+				padding-left:24px;
+				padding-top: 12px;">
+				<input
+					type="text"
+					placeholder="адрес источника данных"
+					style="
+						height: 24px;
+						width: 512px;
+						margin: 0px;
+						padding: 0px;
+						border: 0px solid #FFFFFF;
+						font-size: 10pt;"
+					ng-model="descriptor.service.path"
+					ng-change="GetHashPath()"/>
+			</div>
+
+			<div style="
+				padding-left: 24px;
+				padding-right: 24px;
+				padding-top: 12px;">
+
+				<div style="height: 48px;">
+					<div style="float: left;">
+						<div style="
+							height: 48px;
+							display: table-cell;
+							vertical-align: middle;
+							font-size: 12pt;">
+							Параметры
+						</div>
+					</div>
+
+					<div style="
+						height: 24px;
+						padding-top: 12px;
+						padding-bottom: 12px;
+						padding-right: 4px;
+						float: right;">
+						<img
+							src="img/icons/ic_add_white_24dp_1x.png"
+							style="
+								height: 24px;
+								width: 24px;
+								background: #FFD740;"
+							ng-click="AddParameter(newParameter)">
+					</div>
+				</div>
+
+				<ul style="
+					width: 100%;
+					height: 160px;
+					overflow: auto;
+					list-style: none;
+					padding: 0px;
+					margin: 0px;">
+					<li
+						style="height: 32px;"
+						ng-repeat="parameter in descriptor.service.parameters">
+
+						<div style="
+							width: 182px;
+							height: 24px;
+							padding: 4px;
+							float: left;">
+							<input
+								type="text"
+								placeholder="идентификатор"
+								style="
+									height: 100%;
+									width: 100%;
+									border: 0px solid #FFFFFF;
+									font-size: 10pt;"
+								ng-model="parameter.id"/>
+						</div>
+
+						<div style="
+							width: 182px;
+							height: 24px;
+							padding: 4px;
+							float: left;">
+							<input
+								type="text"
+								placeholder="название параметра"
+								style="
+									width: 100%;
+									height: 100%;
+									border: 0px solid #FFFFFF;
+									font-size: 10pt;"
+								ng-model="parameter.name"/>
+						</div>
+
+						<div style="
+							width: 84px;
+							height: 24px;
+							padding: 4px;
+							float: left;">
+							<select
+								style="
+									width: 100%;
+									height: 100%;
+									border: 0px solid #FFFFFF;
+									font-size: 10pt;"
+								ng-model="parameter.type">
+								<option ng-repeat="type in parameterType" ng-value="type">{{type}}</option>
+							</select>
+						</div>
+
+						<div
+							style="
+								width: 96px;
+								height: 24px;
+								padding: 4px;
+								float: left;">
+							<div
+								style="
+									width: 100%;
+									height: 24px;
+									display: table-cell;
+									vertical-align: middle;
+									font-size: 10pt;">
+								Обязательность
+							</div>
+						</div>
+
+						<div
+							style="
+								height: 24px;
+								padding: 4px;
+								float: left;">
+							<input
+								type="checkbox"
+								style="
+									height: 14px;
+									width: 14px;
+									padding: 5px;"
+								ng-model="parameter.required"/>
+						</div>
+
+						<div
+							style="
+								width: 168px;
+								height: 24px;
+								padding: 4px;
+								float: left;">
+							<input
+								type="text"
+								placeholder="значение по умолчанию"
+								style="
+									width: 100%;
+									height: 100%;
+									border: 0px solid #FFFFFF;
+									font-size: 10pt;"
+								ng-model="parameter.default"/>
+						</div>
+
+						<div
+							style="
+								height: 24px;
+								width: 24px;
+								padding: 4px;
+								float: right;">
+							<img
+								src="img/icons/ic_delete_white_18dp_1x.png"
+								style="
+									width: 18px;
+									height: 18px;
+									padding: 3px;
+									background: #9E9E9E;"
+								ng-click="RemoveParameter(parameter)">
+						</div>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<div ng-if="page == 1">
+			<script type="text/ng-template" id="element">
+				<div>
+					<div style="
+						height: 32px;
+						padding-top: 4px;
+						padding-bottom: 4px;">
+						<div style="
+							height: 24px;
+							padding-right: 8px;
+							padding-top: 4px;
+							padding-bottom: 4px;
+							float: left;">
+							<input
+								type="text"
+								placeholder="тег"
+								style="
+									width: 140px;
+									height: 24px;
+									padding: 0px;
+									margin: 0px;
+									border: 0px solid #FFFFFF;
+									font-size: 10pt;"
+								ng-model="child.tag"
+								ng-change="DetectChanges()"/>
+						</div>
+						<div style="
+							height: 24px;
+							padding-right: 8px;
+							padding-top: 4px;
+							padding-bottom: 4px;
+							float: left;">
+							<input
+								type="text"
+								placeholder="название элемента"
+								style="
+									width: 140px;
+									height: 24px;
+									padding: 0px;
+									margin: 0px;
+									border: 0px solid #FFFFFF;
+									font-size: 10pt;"
+								ng-model="child.name"
+								ng-change="DetectChanges()"/>
+						</div>
+						<div style="
+							height: 24px;
+							padding-right: 8px;
+							padding-top: 4px;
+							padding-bottom: 4px;
+							float: left;">
+							<select
+								style="
+									width: 120px;
+									height: 24px;
+									border: 1px solid #FFD740;
+									font-size: 10pt;"
+								ng-model="child.elementType"
+								ng-change="DetectChanges()"
+								ng-options="type.value as type.name for type in descriptorFieldType">
+							</select>
+						</div>
+						<div style="
+							height: 24px;
+							padding-right: 8px;
+							padding-top: 4px;
+							padding-bottom: 4px;
+							float: left;">
+							<select
+								style="
+									width: 96px;
+									height: 24px;
+									border: 1px solid #FFD740;
+									font-size: 10pt;"
+								ng-if="child.elementType == 'simple'"
+								ng-model="child.dataType"
+								ng-options="type as type for type in parameterType"
+								ng-change="DetectChanges()">
+							</select>
+						</div>
+						<div style="
+								height: 24px;
+								width: 24px;
+								padding: 4px;
+								float: right;">
+							<img
+								src="img/icons/ic_delete_white_18dp_1x.png"
+								style="
+									width: 18px;
+									height: 18px;
+									padding: 3px;
+									background: #9E9E9E;"
+								ng-click="DeleteChild(parent,child)">
+						</div>
+						<div style="
+							height: 24px;
+							padding-top: 4px;
+							padding-bottom: 4px;
+							padding-right: 4px;
+							float: right;">
+							<img
+								src="img/icons/ic_add_white_24dp_1x.png"
+								style="
+									height: 24px;
+									width: 24px;
+									background: #FFD740;"
+								ng-click="AddChild(child)">
+						</div>
+					</div>
+					<ul style="list-style: none; padding-left: 20px; margin: 0px;"
+						ng-init="proxy = child">
+						<li
+							ng-repeat="child in child.children"
+							ng-include="'element'"
+							ng-init="parent = proxy"></li>
+					</ul>
+				</div>
+			</script>
+			<div style="
+				padding-left: 24px;
+				padding-top: 48px;
+				padding-bottom: 12px;
+				height: 48px;
+				display: table-cell;
+				vertical-align: middle;
+				font-size: 14pt;">
+				Структура данных
+				<span ng-show="!mapCompiled">*</span>
+			</div>
+			<div style="
+				padding-left: 24px;
+				padding-right: 24px;">
+				<div style="
+					height: 32px;
+					padding-top: 4px;
+					padding-bottom: 4px;">
+					<div style="
+						height: 24px;
+						padding-right: 8px;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						float: left;">
+						<input
+							type="text"
+							placeholder="тег"
+							style="
+								width: 140px;
+								height: 24px;
+								padding: 0px;
+								margin: 0px;
+								border: 0px solid #FFFFFF;
+								font-size: 10pt;"
+							ng-model="descriptor.structure.tag"
+							ng-change="DetectChanges()"/>
+					</div>
+					<div style="
+						height: 24px;
+						padding-right: 8px;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						float: left;">
+						<input
+							type="text"
+							placeholder="название элемента"
+							style="
+								width: 140px;
+								height: 24px;
+								padding: 0px;
+								margin: 0px;
+								border: 0px solid #FFFFFF;
+								font-size: 10pt;"
+							ng-model="descriptor.structure.name"
+							ng-change="DetectChanges()"/>
+					</div>
+					<div style="
+						height: 24px;
+						padding-right: 8px;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						float: left;">
+						<select
+							style="
+								width: 120px;
+								height: 24px;
+								border: 1px solid #FFD740;
+								font-size: 10pt;"
+							ng-model="descriptor.structure.elementType"
+							ng-change="DetectChanges()"
+							ng-options="type.value as type.name for type in descriptorFieldType">
+						</select>
+					</div>
+					<div style="
+						height: 24px;
+						padding-right: 8px;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						float: left;">
+						<select
+							style="
+								width: 96px;
+								height: 24px;
+								border: 1px solid #FFD740;
+								font-size: 10pt;"
+							ng-if="descriptor.structure.elementType == 'simple'"
+							ng-model="descriptor.structure.dataType"
+							ng-options="type as type for type in parameterType"
+							ng-change="DetectChanges()">
+						</select>
+					</div>
+					<div style="
+						height: 24px;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						padding-right: 4px;
+						float: right;">
+						<img
+							src="img/icons/ic_add_white_24dp_1x.png"
+							style="
+								height: 24px;
+								width: 24px;
+								background: #FFD740;"
+							ng-click="AddChild(descriptor.structure)">
+					</div>
+				</div>
+				<ul style="list-style: none; padding-left: 20px; margin: 0px;">
+					<li ng-repeat="child in descriptor.structure.children" ng-include="'element'" ng-init="parent = descriptor.structure"></li>
+				</ul>
+				<div style="
+					width:  900px;
+					height: 672px;
+					opacity: 0.5;
+					background: #FEFEFE;
+					position: absolute;
+					top: 0px;
+					left: 0px;"
+					ng-if="compileDialog">
+				</div>
+			</div>
+			<div style="
+				height: 96px;
+				padding-left: 24px;
+				padding-top: 24px;
+				padding-bottom: 24px;">
+
+				<div ng-show="reflechtionChanged && !compileDialog" class="float-right" style="margin-top: 6px; margin-right: 24px;">
+					<pl-button action="OpenCompileDialog" caption="Построить карту данных"></pl-button>
+				</div>
+
+				<div
+					style="
+						width: 512px;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%,-50%);
+						background: #FFFFFF;
+						box-shadow: 0px 0px 8px rgba(0,0,0,0.2);"
+					ng-show="compileDialog">
+					<div style="
+						height: 48px;
+						background: #FFD740;
+						color: #424242;
+						padding-left: 24px;">
+						<div
+							style="
+							height: 48px;
+							display: table-cell;
+							vertical-align: middle;">
+							Создание карты
+						</div>
+					</div>
+					<div style="
+						padding: 24px;">
+						<div style="
+							height: 48px;
+							display: table-cell;
+							vertical-align: middle;">
+							<span style="
+								padding-right: 8px;
+								font-size: 12pt;">
+								Корневой элемент
+							</span>
+							<select
+								style="
+									width: 256px;
+									height: 24px;
+									border: 1px solid #FFD740;
+									font-size: 10pt;"
+								ng-model="root"
+								ng-options="collection as collection.name for collection in reflection.collections">
+								<option value="">не выбрано</option>
+							</select>
+						</div>
+						<div style="
+							height: 36px;
+							padding-top: 24px;">
+
+							<div class="float-right">
+								<pl-button action="CompileMap" caption="Создать"></pl-button>
+							</div>
+
+							<div class="float-right" style="margin-right: 12px;">
+								<pl-button action="CloseCompileDialog" caption="Отменить"></pl-button>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div style="
+				padding-left: 24px;
+				padding-top: 48px;
+				padding-bottom: 12px;
+				height: 48px;
+				display: table-cell;
+				vertical-align: middle;
+				font-size: 14pt;">
+				Расширение
+			</div>
+			<div style="
+				padding-left: 24px;
+				padding-right: 24px;">
+
+				<button ng-click="AddExtension()">add</button>
+
+				<div ng-repeat="extension in descriptor.extension">
+
+					<span>Поле</span>
+					<select
+						ng-init="selectedField = {id: extension.id}"
+						ng-model="selectedField"
+						ng-options="extOption as extOption.id for extOption in FilterKeys(descriptor.compiled) track by extOption.id"
+						ng-change="extension.id = selectedField.id">
+						<option value="">не выбрано</option>
+					</select>
+
+					<span>Словарь</spna>
+					<select
+						ng-init="selectedBook = {id: extension.book}"
+						ng-model="selectedBook"
+						ng-change="extension.book = selectedBook.id;SetExpansionDetails(extension,selectedBook);CompileExpandedFields()"
+						ng-options="book as book.name for book in Books track by book.id">
+						<option value="">не выбран</option>
+					</select>
+
+					<button ng-click="RemoveExtension(extension)">Delete</button>
+
+					<div>
+						<div>
+							Поля расширения
+						</div>
+						<ul style="list-style: none; margin: 0px; padding: 0px;">
+							<li ng-repeat="(key,value) in GetExpandedFields(extension.book).compiledExtend">
+								{{key}} {{value.type}}
+							</li>
+						<ul>
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+			<div style="
+				padding-left: 24px;
+				padding-top: 48px;
+				padding-bottom: 12px;
+				height: 48px;
+				display: table-cell;
+				vertical-align: middle;
+				font-size: 14pt;">
+				Справочник
+			</div>
+			<div style="
+				padding-left: 24px;
+				padding-right: 24px;">
+				Формировать справочник
+				<input
+					type="checkbox"
+					ng-model="descriptor.service.referenceBook"/>
+				Ключ
+				<select
+					ng-model="descriptor.collection.key"
+					ng-options="keyOption as keyOption.id for keyOption in FilterKeys(descriptor.compiled) track by keyOption.id"
+					ng-change="BuildBookRequest()">
+					<option value="">не выбран</option>
+				</select>
+			</div>
+		</div>
+		<div ng-if="page == 2">
+			<div>
+				<div style="
+					padding-left: 24px;
+					padding-top: 48px;
+					font-size: 14pt;">
+					График обновления данных
+				</div>
+				<div style="height: 72px;">
+					<div style="
+						height: 24px;
+						padding-top: 24px;
+						padding-bottom: 24px;
+						padding-left: 24px;
+						padding-right: 4px;
+						display: table-cell;
+						vertical-align: middle;">
+						<input
+							type="text"
+							placeholder="минута"
+							style="
+								width: 72px;
+								height: 100%;
+								padding: 0px;
+								margin: 0px;
+								font-size: 10pt;
+								border: 0px solid #FFFFFF;"
+							ng-model="schedule.minute"
+							ng-change="RefreshSchedule()"/>
+					</div>
+
+					<div style="
+						height: 24px;
+						padding-top: 24px;
+						padding-bottom: 24px;
+						padding-left: 4px;
+						padding-right: 4px;
+						display: table-cell;
+						vertical-align: middle;">
+						<input
+							type="text"
+							placeholder="час"
+							style="
+								width: 72px;
+								height: 100%;
+								padding: 0px;
+								margin: 0px;
+								font-size: 10pt;
+								border: 0px solid #FFFFFF;"
+							ng-model="schedule.hour"
+							ng-change="RefreshSchedule()"/>
+					</div>
+
+					<div style="
+						height: 24px;
+						padding-top: 24px;
+						padding-bottom: 24px;
+						padding-left: 4px;
+						padding-right: 4px;
+						display: table-cell;
+						vertical-align: middle;">
+						<input
+							type="text"
+							placeholder="день"
+							style="
+								width: 72px;
+								height: 100%;
+								padding: 0px;
+								margin: 0px;
+								font-size: 10pt;
+								border: 0px solid #FFFFFF;"
+							ng-model="schedule.day"
+							ng-change="RefreshSchedule()"/>
+					</div>
+
+					<div style="
+						height: 24px;
+						padding-top: 24px;
+						padding-bottom: 24px;
+						padding-left: 4px;
+						padding-right: 4px;
+						display: table-cell;
+						vertical-align: middle;">
+						<input
+							type="text"
+							placeholder="месяц"
+							style="
+								width: 72px;
+								height: 100%;
+								padding: 0px;
+								margin: 0px;
+								font-size: 10pt;
+								border: 0px solid #FFFFFF;"
+							ng-model="schedule.month"
+							ng-change="RefreshSchedule()"/>
+					</div>
+
+					<div style="
+						height: 24px;
+						padding-top: 24px;
+						padding-bottom: 24px;
+						padding-left: 4px;
+						padding-right: 4px;
+						display: table-cell;
+						vertical-align: middle;">
+						<input
+							type="text"
+							placeholder="день недели"
+							style="
+								width: 80px;
+								height: 100%;
+								padding: 0px;
+								margin: 0px;
+								font-size: 10pt;
+								border: 0px solid #FFFFFF;"
+							ng-model="schedule.dayOfWeek"
+							ng-change="RefreshSchedule()"/>
+					</div>
+				</div>
+				<div style="
+					padding-left: 24px;
+					padding-right: 24px;"
+					ng-show="!showCronHelp">
+					<img
+						style="
+							width: 24px;
+							height: 24px;
+							padding: 4px;
+							background: #FFD740;"
+						src="img/icons/ic_help_outline_white_24dp_1x.png"
+						ng-click="showCronHelp = !showCronHelp">
+				</div>
+				<div style="
+					padding-left: 24px;
+					padding-right: 24px;"
+					ng-show="showCronHelp">
+					<div style="
+						width: 100%;
+						height: 32px;
+						background: #FFD740;">
+						<img
+							style="
+								width: 24px;
+								height: 24px;
+								padding: 4px;
+								background: #FFD740;
+								float: right;"
+							src="img/icons/ic_help_outline_white_24dp_1x.png"
+							ng-click="showCronHelp = !showCronHelp">
+					</div>
+					<div style="
+						background: #F5F5F5;
+						padding: 12px;
+						font-size: 10pt;">
+						Пять колонок задают время выполнения (Минута, Час, День, Месяц, День недели), в них может находиться число, список чисел, разделённых запятыми, диапазон чисел, разделённых дефисом, символы '*' или '/'
+						<br>
+						<br>
+						Все условия (времени запуска) проверяются по «логическому И», кроме условий «день недели» и «день месяца» — указанные совместно, они обрабатываются по «логическому ИЛИ»
+						<br>
+						<br>
+						"23 */2 * * *" Выполняется в 0:23, 2:23, 4:23 и т. д.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="window-footer">
+		<div class="float-right" style="margin-top: 18px; margin-right: 12px;">
+			<pl-button action="Close" caption="Отменить"></pl-button>
+		</div>
+		<div class="float-right" style="margin-top: 18px; margin-right: 12px;">
+			<pl-button action="Save" caption="Сохранить"></pl-button>
+		</div>
+	</div>
+
+</div>

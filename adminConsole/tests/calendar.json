@@ -1,0 +1,254 @@
+{
+  "id": "models/smaKit/calendar/Calendar",
+  "name": "Календарь",
+  "icon": "",
+  "info": "Календарь",
+  "defaults": {
+    "settings": {
+      "dataset":"",
+      "variables": [
+        {
+          "id":"posX",
+          "name":"координата X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"posY",
+          "name":"координата Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"posZ",
+          "name":"координата Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"width",
+          "name":"ширина",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"height",
+          "name":"высота",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"pivotX",
+          "name":"точка вращения X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"pivotY",
+          "name":"точка вращения Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"anchorMinX",
+          "name":"верхний левый угол X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"anchorMinY",
+          "name":"верхний левый угол Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"anchorMaxX",
+          "name":"правый нижний угол X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"anchorMaxY",
+          "name":"правый нижний угол Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleX",
+          "name":"масштаб X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleY",
+          "name":"масштаб Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleZ",
+          "name":"масштаб Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"rotationX",
+          "name":"поворот по оси X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"rotationY",
+          "name":"поворот по оси Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"rotationZ",
+          "name":"поворот по оси Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"offsetRotationX",
+          "name":"дополнительный поворот по оси X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"offsetRotationY",
+          "name":"дополнительный поворот по оси Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"offsetRotationZ",
+          "name":"дополнительный поворот по оси Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+
+        {
+          "id":"date",
+          "name":"Дата",
+          "value": "",
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@string",
+          "__type":"SMA.system.Variable"
+        }
+      ],
+      "fields": [],
+      "actions": [
+        {
+          "id": "onChange",
+          "name": "Действие при выборе",
+          "steps": [],
+          "__type": "SMA.system.Action"
+        },
+        {
+          "id": "onStart",
+          "name": "Действие на старте",
+          "steps":[],
+          "__type": "SMA.system.Action"
+        },
+        {
+          "id": "onFinished",
+          "name": "Действие после завершения",
+          "steps":[],
+          "__type": "SMA.system.Action"
+        },
+        {
+          "id": "onChanged",
+          "name": "Действие при изменении",
+          "steps":[],
+          "__type": "SMA.system.Action"
+        }
+      ],
+      "modificators": [],
+      "methods": {},
+      "__type": "SMA.system.ViewSettings"
+    }
+  }
+}

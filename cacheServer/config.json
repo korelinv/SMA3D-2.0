@@ -1,0 +1,8 @@
+{
+  "instance": "Cache Server",
+  "port": 8010,
+  "cache_type": "book",
+  "database": "mongodb://localhost:27017/dataCache",
+  "snapshot_service": "http://localhost:8080/cache/book",
+  "descriptor_service": "http://localhost:8080/descriptor"
+}

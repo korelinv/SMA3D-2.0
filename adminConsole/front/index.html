@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Консоль администратора</title>
+  </head>
+  <body ng-app="adminConsole">
+
+    <!-- хэдер -->
+    <div class="header">
+      <button>Менеджер моделей</button>
+    </div>
+
+    <!-- боди -->
+    <div class="body">
+      <div
+        id="modelManager"
+        ng-controller="modelManagerCtrl">
+        <button ng-click="open()">Установить</button>
+
+        <div id="container">
+          <table>
+            <tr>
+              <th id="id">id</th>
+              <th id="name">name</th>
+              <th id="icon">icon</th>
+              <th id="info">info</th>
+              <th id="control"></th>
+            </tr>
+            <tr ng-repeat="model in models">
+              <td>{{model.id}}</td>
+              <td>{{model.name}}</td>
+              <td>{{model.iconPath}}</td>
+              <td>{{model.info}}</td>
+              <td><button ng-click="delete(model)">Удалить</button></td>
+            </tr>
+          </table>
+        </div>
+
+        <div
+          class="blocker"
+          ng-if="addingForm">
+        </div>
+
+        <div
+          id="install-dialog"
+          class="dialog"
+          ng-if="addingForm"
+          ng-init="details = false">
+          <div>Добавление новой модели</div>
+          <span>Установочный пакет модели</span>
+          <input on-read-file="read($fileContent)" type="file"/>
+          <button ng-click="details = !details" ng-show="file">Детали</button>
+          <div
+            id="settings-preview"
+            class="code-pretty"
+            ng-if="file && details">
+            <settings-line sl-value="file.id" sl-caption="id" sl-class="property"></settings-line>
+            <settings-line sl-value="file.name" sl-caption="name" sl-class="property"></settings-line>
+            <settings-line sl-value="file.icon" sl-caption="icon" sl-class="property"></settings-line>
+            <settings-line sl-value="file.info" sl-caption="info" sl-class="property"></settings-line>
+            <settings-line sl-value="file.defaults.settings.dataset" sl-caption="dataset" sl-class="property"></settings-line>
+            <settings-line sl-caption="settings" sl-class="property"></settings-line>
+            <div
+              class="code-padding"
+              ng-init="collapsed = true;"
+              ng-repeat="variable in file.defaults.settings.variables">
+              <settings-line sl-value="variable.id" sl-caption="variable" sl-class="variable" sl-nested="[{value: variable.name,name: 'name',class: 'property'},{value: variable.value,name: 'value',class: 'property'},{value: variable.protect,name: 'protect',class: 'property'},{value: variable.pass,name: 'pass',class: 'property'},{value: variable.native,name: 'native',class: 'property'},{value: variable.type,name: 'type',class: 'property'}]"></settings-line>
+            </div>
+            <div
+              class="code-padding"
+              ng-init="collapsed = true;"
+              ng-repeat="field in file.defaults.settings.fields">
+              <settings-line sl-value="field.id" sl-caption="field" sl-class="field" sl-nested="[{value: field.name,name: 'name',class:'property'},{value: field.type,name: 'type',class:'property'},{value: field.path,name: 'path',class:'property'}]"></settings-line>
+            </div>
+            <div
+              style="padding-left: 20px;"
+              ng-init="collapsed = true;"
+              ng-repeat="action in file.defaults.settings.actions">
+
+
+              <span ng-click="collapsed = !collapsed"><span style="color: #f45454;">action</span> {{action.id}} <span ng-show="collapsed">{...}</span></span>
+              <div ng-hide="collapsed">
+                {
+                <div style="padding-left: 20px;">
+                  <span style="color: #f45454;">name</span> {{action.name}}<br>
+                  <span style="color: #f45454;">actionType</span> {{action.actionType}}<br>
+                  <span style="color: #f45454;">target</span> {{action.target.id}}<br>
+                  {
+                  <div style="padding-left: 20px;">
+                    <span style="color: #f45454;">name</span> {{action.target.name}}<br>
+                    <span style="color: #f45454;">imgPath</span> {{action.target.imgPath}}<br>
+                  </div>
+                  }<br>
+                  <span style="color: #f45454;">substitute</span> {{action.substitute.id}}<br>
+                  {
+                  <div style="padding-left: 20px;">
+                    <span style="color: #f45454;">name</span> {{action.target.name}}<br>
+                    <span style="color: #f45454;">imgPath</span> {{action.target.imgPath}}<br>
+                  </div>
+                  }<br>
+                  <span style="color: #f45454;">passingValues</span> [
+                    <span
+                      style="margin-left: 4px; margin-right: 4px;"
+                      ng-repeat="pvalue in action.passingValues">{{pvalue}}</span>
+                  ]
+                </div>
+                }
+              </div>
+
+            </div>
+            <div ng-repeat="modificator in file.defaults.settings.modificators">
+              {{modificator}}
+            </div>
+          </div>
+          <div style="height: 48px;">
+            <div style="float: right; padding-top: 12px;">
+              <button ng-click="close()">Закрыть</button>
+              <button ng-click="add(file)" ng-disabled="!file">Сохранить</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<div class="content-wrap">
+
+  <div class="width-100p height-large">
+    <div class="float-left padding-left-regular padding-top-regular padding-bottom-regular">
+      Пользователи
+    </div>
+  </div>
+
+  <div class="width-100p height-medium">
+    <div class="float-right">
+      <img
+        class="icon-medium padding-right-regular"
+        src=""
+        title="Добавить пользователя"
+        ng-click="CreateNewUser()">
+    </div>
+  </div>
+
+  <div class="usersList padding-top-regular padding-left-regular padding-right-regular padding-bottom-regular">
+    <ul>
+      <li
+        class="height-large width-100p"
+        ng-repeat="user in users">
+        <div class="float-left">
+          {{user.surname}}
+        </div>
+        <div class="float-left padding-left-regular">
+          {{user.name}}
+        </div>
+        <div class="float-left padding-left-regular">
+          {{user.patronymic}}
+        </div>
+
+
+        <div class="float-right">
+          <img
+            class="icon-medium padding-right-regular"
+            src=""
+            title="Редактировать"
+            ng-click="EditUser(user.login)">
+          <img
+            class="icon-medium padding-right-regular"
+            src=""
+            title="Удалить"
+            ng-if="user.login != CurrentUser()"
+            ng-click="DeleteUser(user.login)">
+        </div>
+
+        <div class="float-right">
+          {{user.email}}
+        </div>
+
+      </li>
+    </ul>
+  </div>
+
+</div>

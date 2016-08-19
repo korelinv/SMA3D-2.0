@@ -1,0 +1,91 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.header {
+  width: 100%;
+  height: 48px;
+}
+
+.body {
+  height: calc(100% - 48px);
+  width: 100%;
+}
+
+.blocker {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: #e8e7e7;
+  opacity: 0.8;
+}
+
+.dialog {
+  padding: 12px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #676767;
+  background: #ffffff;
+}
+
+.code-pretty {
+  background: #2a2c34;
+  color: #a7aebd;
+  padding: 12px;
+}
+
+
+
+
+#modelManager {
+  height: 100%;
+  width: 100%;
+}
+
+#modelManager > #container {
+  width: calc(100% - 48px);
+  height: 100%;
+  overflow: auto;
+}
+
+#modelManager > #container > table tr th#id {width: 10%;}
+#modelManager > #container > table tr th#name {width: 10%;}
+#modelManager > #container > table tr th#icon {width: 10%;}
+#modelManager > #container > table tr th#info {width: 45%;}
+#modelManager > #container > table tr th#control {width: 5%;}
+
+#modelManager > #install-dialog > #settings-preview {
+  width: 768px;
+  height: 512px;
+  overflow: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* directive */
+.variable {color: #f45454;}
+.field {color: #f45454;}
+.action {color: #f45454;}
+.modificator {color: #f45454;}
+.property {color: #f45454;}
+.code-padding {padding-left: 20px;}

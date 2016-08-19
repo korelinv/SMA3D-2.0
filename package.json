@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "sma backend",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "korelinvi proitr",
+  "license": "ISC",
+  "dependencies": {
+    "bindings": "^1.2.1",
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "guid": "0.0.12",
+    "mongodb": "^2.1.7",
+    "node-gyp": "^3.3.0",
+    "node-schedule": "^1.0.0",
+    "promise": "^7.1.1",
+    "q": "^1.4.1",
+    "rebuild": "^0.1.2",
+    "request": "^2.69.0",
+    "uuid-lib": "0.0.6",
+    "xml2js": "^0.4.16"
+  }
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | SMA 2.0</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="lib/jquery.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-ui-router.js"></script>
+
+    <link rel="stylesheet" href="css/UIstyle.css">
+  </head>
+  <body ng-app="smaWebUI">
+
+    <div id="unityLink" ng-controller="unityLink"></div>
+
+    <div>
+      <unity-web-gl id="webglCanvas"></unity-web-gl>
+      <hamburger-menu id="hamburgerMenu"></hamburger-menu>
+      <ui-view></ui-view>
+    </div>
+
+    <!--
+    <div ng-if="true">
+      <div id="loginForm" ng-controller="loginForm">
+        <img class="loginFormLogo" src="http://www.clipartbest.com/cliparts/nTE/7qR/nTE7qRKkc.png">
+        <div>
+          <div class="loginFormInputContainer">
+            <input
+              class="loginFormInput"
+              type="text"
+              placeholder="Логин"
+              ng-model="login"/>
+          </div>
+          <div class="loginFormInputContainer">
+            <input
+              class="loginFormInput"
+              type="password"
+              placeholder="Пароль"
+              ng-model="password"/>
+          </div>
+          <div class="loginFormInputContainer">
+            <button
+              class="loginFormButton"
+              ng-click="Authorize(login,password)">Войти</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+
+    <!--
+    <div id="blocker" tabindex="0"><div>
+    -->
+
+    <script src="js/angularCoupling.js"></script>
+    <script src="js/smaWebUI.js"></script>
+  </body>
+</html>

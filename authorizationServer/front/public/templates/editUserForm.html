@@ -1,0 +1,99 @@
+<div class="content-wrap">
+
+  <div class="header-medium padding-top-large padding-bottom-large padding-left-large padding-right-large">
+    Редактирование пользователя
+  </div>
+
+  <form class="padding-right-regular padding-left-regular width-50p" style="margin-left: auto; margin-right: auto;" name="form" novalidate>
+    <div class="padding-top-regular padding-bottom-regular">
+      <span>Логин</span>
+      <input
+        class="input"
+        type="text"
+        name="ulogin"
+        placeholder="введите логин"
+        ng-model="user.login"
+        required>
+      <div ng-show="form.ulogin.$dirty">
+        <div class="validation-v-text" ng-show="form.ulogin.$error.required">обязательное поле</div>
+      </div>
+    </div>
+    <div class="padding-top-regular padding-bottom-regular">
+      <span>E-mail</span>
+      <input
+        class="input"
+        type="email"
+        name="uemail"
+        placeholder="введите адрес электронной почты"
+        ng-model="user.email"
+        required>
+      <div ng-show="form.uemail.$dirty">
+        <div class="validation-v-text" ng-show="form.uemail.$error.required">обязательное поле</div>
+        <div class="validation-v-text" ng-show="form.uemail.$error.email">некорректный адрес электронной почты</div>
+      </div>
+    </div>
+
+    <div class="padding-top-regular padding-bottom-regular">
+      <span>Фамилия</span>
+      <input
+        class="input"
+        type="text"
+        name="usurname"
+        placeholder="введите фамилию"
+        ng-model="user.surname"
+        required>
+      <div ng-show="form.usurname.$dirty">
+        <div class="validation-v-text" ng-show="form.usurname.$error.required">обязательное поле</div>
+      </div>
+    </div>
+    <div class="height-medium">
+      <span>Имя</span>
+      <input
+        class="input"
+        type="text"
+        name="uname"
+        placeholder="введите имя"
+        ng-model="user.name"
+        required>
+      <div ng-show="form.name.$dirty">
+        <div class="validation-v-text" ng-show="form.uname.$error.required">обязательное поле</div>
+      </div>
+    </div>
+    <div class="padding-top-regular padding-bottom-regular">
+      <span>Отчество</span>
+      <input
+        class="input"
+        type="text"
+        name="upatro"
+        placeholder="введите отчество"
+        ng-model="user.patronymic">
+    </div>
+
+    <div class="height-medium">
+      <span>Группы</span>
+      <select
+        name="ugroups"
+        ng-model="group"
+        ng-options="group as group.name for group in avalibleGroups">
+        <option value="">не выбрано</option>
+      </select>
+      <button class="button" ng-click="AddGroup(group)" ng-disabled="!group">Добавить</button>
+    </div>
+
+    <div>
+      <ul>
+        <li ng-repeat="group in user.groups">
+          {{group.name}}
+          <button class="button" ng-click="RemoveGroup(group)">Удалить</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="padding-top-large padding-bottom-regular height-medium">
+      <button class="button float-right" ng-click="GoBack()">Отменить</button>
+      <input class="button float-right margin-right-regular" type="submit" ng-disabled="!form.$valid" ng-click="Submit()" value="Сохранить">
+    </div>
+
+  </form>
+
+</div>

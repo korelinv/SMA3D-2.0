@@ -1,0 +1,28 @@
+<div class="loginForm">
+  <div class="padding-top-regular">
+    <input
+      class="input width-100p"
+      type="text"
+      placeholder="Логин"
+      ng-model="login"></input>
+  </div>
+  <div class="padding-top-regular">
+    <input
+      class="input width-100p"
+      type="password"
+      placeholder="Пароль"
+      ng-model="password"></input>
+  </div>
+  <div
+    class="padding-top-regular"
+    style="height: 24px;">
+    <div class="float-right">
+      <a href="">Забыли пароль?</a>
+    </div>
+  </div>
+  <div class="padding-top-regular padding-bottom-regular">
+    <button
+      class="button width-100p height-large"
+      ng-click="TryLogin(login,password)">Войти</button>
+  </div>
+</div>

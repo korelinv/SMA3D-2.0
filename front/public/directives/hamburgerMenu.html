@@ -1,0 +1,12 @@
+<div class="hmenu">
+  <div class="hmenuIcon">
+    <img src="img/icons/ic_menu_black_24dp_1x.png" ng-click="Fold()">
+  </div>
+
+  <ul ng-if="unfolded">
+    <li class="hmenuIcon" ng-repeat="item in menuItems">
+      <img ng-src="{{item.icon}}" ng-click="Open(item.state)">
+    </li>
+  </ul>
+
+</div>

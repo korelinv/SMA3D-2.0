@@ -1,0 +1,270 @@
+{
+  "id": "models/simple3dKit/plane/Plane",
+  "name": "Плоскость (3D примитив)",
+  "icon": "",
+  "info": "3D примитив плоскости",
+  "defaults": {
+    "settings": {
+      "dataset":"",
+      "variables": [
+        {
+          "id":"posX",
+          "name":"координата X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"posY",
+          "name":"координата Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"posZ",
+          "name":"координата Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleX",
+          "name":"масштаб X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleY",
+          "name":"масштаб Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleZ",
+          "name":"масштаб Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"rotationX",
+          "name":"поворот по оси X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"rotationY",
+          "name":"поворот по оси Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"rotationZ",
+          "name":"поворот по оси Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"offsetRotationX",
+          "name":"дополнительный поворот по оси X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"offsetRotationY",
+          "name":"дополнительный поворот по оси Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"offsetRotationZ",
+          "name":"дополнительный поворот по оси Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"textureUrl",
+          "name":"Текстура",
+          "value": "",
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@string",
+          "__type":"SMA.system.Variable"
+        }
+
+
+        ,
+        {
+          "id":"mainTextureWrapMode",
+          "name":"режим отображения текстуры",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@int",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"shadowCastingMode",
+          "name":"Отображение теней",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@int",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"receiveShadows",
+          "name":"Отображение чужих теней",
+          "value": true,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@boolean",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"tilingX",
+          "name":"Тайлинг (X)",
+          "value": 1,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"tilingY",
+          "name":"Тайлинг (Y)",
+          "value": 1,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"textureOffsetX",
+          "name":"Смещение текстуры (X)",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"textureOffsetY",
+          "name":"Смещение текстуры (Y)",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        }
+      ],
+      "fields": [],
+      "actions": [
+        {
+          "id": "onStart",
+          "name": "Действие на старте",
+          "steps":[],
+          "__type": "SMA.system.Action"
+        },
+        {
+          "id": "onFinished",
+          "name": "Действие после завершения",
+          "steps":[],
+          "__type": "SMA.system.Action"
+        },
+        {
+          "id": "onChanged",
+          "name": "Действие при изменении",
+          "steps":[],
+          "__type": "SMA.system.Action"
+        }
+      ],
+      "modificators": [],
+      "enumerators": {
+        "shadowCastingMode" : [
+          {
+            "value" : 0,
+            "name" : "не отображать"
+          },
+          {
+            "value" : 1,
+            "name" : "отображать"
+          },
+          {
+            "value" : 2,
+            "name" : "двухсторонние"
+          },
+          {
+            "value" : 3,
+            "name" : "только тени"
+          }
+        ],
+        "mainTextureWrapMode" : [
+          {
+            "value" : 0,
+            "name" : "повторять"
+          },
+          {
+            "value" : 1,
+            "name" : "закрепить"
+          }
+        ]
+      },
+      "methods": {},
+      "__type": "SMA.system.ViewSettings"
+    }
+  }
+}

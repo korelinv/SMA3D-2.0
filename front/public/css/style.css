@@ -1,0 +1,365 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: Helvetica, Verdana, Arial, sans-serif; }
+body {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+
+
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.display-table {
+  display: table;
+}
+.display-table-cell {
+  display: table-cell;
+}
+
+#pl-checkbox {
+  height: 24px;
+  overflow: auto;
+}
+#pl-checkbox > div.box {
+  width: 24px;
+  height: 24px;
+}
+#pl-checkbox > div.true {
+  background: #26b9e7;
+  -webkit-mask-box-image: url(../img/svg/ic_check_box_white_24px.svg);
+}
+#pl-checkbox > div.false {
+  background: #8e8e8e;
+  -webkit-mask-box-image: url(../img/svg/ic_check_box_outline_blank_white_24px.svg);
+}
+#pl-checkbox > div.label {
+  height: 100%;
+}
+#pl-checkbox > div.label > div {
+  vertical-align: middle;
+  text-align: left;
+}
+
+#snapshot-selector,
+#start-screen-editor{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: #f0f0f0;
+}
+div.fade-in#snapshot-selector,
+div.fade-in#start-screen-editor{
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+div.fade-out#snapshot-selector,
+div.fade-out#start-screen-editor {
+  animation-name: fadeOut;
+  animation-duration: 0.4s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+#snapshot-selector > div.header,
+#start-screen-editor > div.header {
+  height: 48px;
+  width: 100%;
+  background: #26b9e7;
+}
+#snapshot-selector > div.header > div.display-table-cell,
+#start-screen-editor > div.header > div.display-table-cell{
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+  color: #ffffff;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+#snapshot-selector > div.side-panel {
+  width: 35%;
+  height: calc(100vh - 48px);
+  background: #ffffff;
+}
+#snapshot-selector > div.main-container {
+  width: 65%;
+  height: calc(100vh - 48px);
+  background: transparent;
+  overflow: auto;
+}
+#snapshot-selector > div.side-panel > div.tag-container {
+  padding-left : 24px;
+  padding-right: 24px;
+  padding-bottom: 48px;
+  padding-top: 24px;
+  overflow: auto;
+}
+#snapshot-selector > div.side-panel > div > div.caption {
+  width: 100%;
+  color: #282828;
+  font-size: 16pt;
+}
+#snapshot-selector > div.side-panel > div.search-container {
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 48px;
+  padding-bottom: 24px;
+  overflow: auto;
+}
+#snapshot-selector > div.side-panel > div.search-container > input {
+  border: 0px;
+  width: 100%;
+  height: 24px;
+  color: #282828;
+  text-align: right;
+  background: #fafafa;
+  padding: 4px;
+}
+#snapshot-selector > div.side-panel > div.filters-container {
+  padding-left : 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  padding-top: 24px;
+}
+#snapshot-tag {
+  margin: 4px;
+  color: #8e8e8e;
+  cursor: pointer;
+}
+#snapshot-tag:hover {
+  color: #26b9e7;
+}
+div.not-selected#snapshot-tag {
+  color: #8e8e8e;
+}
+div.selected#snapshot-tag {
+  color: #26b9e7;
+}
+div.small#snapshot-tag {
+  font-size: 10pt;
+}
+div.normal#snapshot-tag {
+  font-size: 14pt;
+}
+div.big#snapshot-tag {
+  font-size: 18pt;
+}
+div.huge#snapshot-tag {
+  font-size: 24pt;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pl-button {
+  height: 36px;
+  background: #FFD740;
+  color: #424242;
+}
+#pl-button > div {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 8px;
+}
+#pl-tab-button {
+  height: 48px;
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+#pl-tab-button > div {
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  top: 44px;
+  background: #FFD740;
+}
+
+#window-header {
+  width: 100%;
+  background: #F5F5F5;
+  z-index: 10;
+}
+#window-header > div.caption-wrapper > div.caption {
+  height: 96px;
+  display: table-cell;
+  vertical-align: bottom;
+  padding-left: 24px;
+  font-size: 16pt;
+}
+#window-header > div.spacer {
+  height: 48px;
+  display: table-cell;
+}
+#window-footer {
+  width: 100%;
+  height: 72px;
+  background: #F5F5F5;
+  clear: both;
+}
+
+#unityLink {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+}
+#webglCanvas {
+  position: absolute;
+}
+#hamburgerMenu {
+  position: absolute;
+  left: 100%;
+  top: 0%;
+  transform: translate(-100%, 0%);
+}
+#blocker {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #919191;
+
+  animation-name: blockerFadeOut;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+#loginForm {
+  width: 400px;
+  height: 475px;
+  background: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+.hmenuIcon {
+  float: right;
+  height: 32px;
+  animation-name: hmenuButtonLeave;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.hmenuIcon:hover {
+  animation-name: hmenuButtonEnter;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.hmenuIcon > img {
+  padding: 4px;
+  width: 24px;
+  height: 24px;
+}
+.hmenu > ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+.loginFormLogo {
+  width : 400px;
+  height: 300px;
+}
+.loginFormInputContainer {
+  width: 100%;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.loginFormInput {
+  width: 300px;
+  height: 32px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 0px;
+  border: #ffffff solid 0px;
+  font-size: 12pt;
+  text-align: center;
+}
+.loginFormButton {
+  width: 250px;
+  height: 32px;
+  margin-left: 75px;
+  margin-right: 75px;
+}
+
+
+/* анимации */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+}
+@keyframes blockerFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+@keyframes blockerFadeOut {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes hmenuButtonEnter {
+  from {
+    background: #ffffff;
+  }
+  to {
+    background: #ffa800;
+  }
+}
+@keyframes hmenuButtonLeave {
+  from {
+    background: #ffa800;
+  }
+  to {
+    background: #ffffff;
+  }
+}

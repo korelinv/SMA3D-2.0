@@ -1,0 +1,181 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+a {
+  color: #989898;
+  font-size: 12pt;
+  text-decoration: none;
+}
+::-webkit-input-placeholder {
+  font-size: 10pt;
+  color: #bbbbbb;
+}
+
+.loginForm {
+  width: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.header{
+  width: 100%;
+  height: 128px;
+  background: #666465;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+.sidePanel {
+  width: 256px;
+  height: calc(100vh - 128px);
+  background: #c8c8c8;
+  position: fixed;
+  top: 128px;
+  left: 0px;
+}
+.content {
+  position: fixed;
+  top: 128px;
+  left: 256px;
+  width: calc(100% - 256px);
+}
+.content-wrap{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - 128px);
+}
+
+.sideMenu {}
+.sideMenu > ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+.sideMenu > ul > li {
+  width: 100%;
+}
+.usersList {}
+.usersList > ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+.logFilterTab {
+  background: #e3f5ff;
+}
+.logFilterTab > div#filter-container {
+  height: 96px;
+}
+.logTable {}
+.logTable tr:nth-child(even) {
+  background: #eeeeee;
+}
+
+
+.header-medium {
+  font-size: 14pt;
+}
+.header-large {
+  font-size: 16pt;
+}
+.validation-v-text {
+  color: #f94646;
+  font-size: 10pt;
+}
+.input {
+  border: 0px solid #ffffff;
+  margin: 0px;
+  height: 22px;
+  min-width: 128px;
+  font-size: 12pt;
+}
+.select {
+  border: 0px solid #f2f2f2;
+  margin: 0px;
+  height: 24px;
+  padding: 2px;
+  min-width: 128px;
+  font-size: 12pt;
+}
+.button {
+  background: #ffffff;
+	background-color:#d6d6d6;
+  height: 24px;
+	color:#676767;
+	font-size:12pt;
+	text-align:center;
+  border: 0px solid #ffffff;
+}
+.icon-medium {
+  width: 24px;
+  height: 24px;
+}
+
+.height-medium {
+  height: 24px;
+}
+.height-large {
+  height: 48px;
+}
+.height-small {
+  height: 12px;
+}
+.min-height-medium {
+  min-height: 24px;
+}
+.min-height-large {
+  min-height: 48px;
+}
+.min-height-small {
+  min-height: 12px;
+}
+.width-100p{
+  width: 100%;
+}
+.width-50p{
+  width: 50%;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.padding-top-regular {
+  padding-top: 8px;
+}
+.padding-bottom-regular {
+  padding-bottom: 8px;
+}
+.padding-left-regular {
+  padding-left: 8px;
+}
+.padding-right-regular {
+  padding-right: 8px;
+}
+.padding-top-large {
+  padding-top: 16px;
+}
+.padding-bottom-large {
+  padding-bottom: 16px;
+}
+.padding-left-large {
+  padding-left: 16px;
+}
+.padding-right-large {
+  padding-right: 16px;
+}
+.margin-top-regular {
+  margin-top: 8px;
+}
+.margin-bottom-regular {
+  margin-bottom: 8px;
+}
+.margin-left-regular {
+  margin-left: 8px;
+}
+.margin-right-regular {
+  margin-right: 8px;
+}

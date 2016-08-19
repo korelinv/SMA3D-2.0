@@ -1,0 +1,21 @@
+<div>
+  <canvas
+    class="emscripten"
+    id="canvas"
+    oncontextmenu="event.preventDefault()"
+    height="{{height}}px"
+    width="{{width}}px"
+    tabindex="0">
+  </canvas>
+  <script type='text/javascript'>
+    var Module = {
+      TOTAL_MEMORY: 536870912,
+      errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+      compatibilitycheck: null,
+      dataUrl: "Release/sma.data",
+      codeUrl: "Release/sma.js",
+      memUrl: "Release/sma.mem",
+    };
+  </script>
+  <script src="Release/UnityLoader.js"></script>
+</div>

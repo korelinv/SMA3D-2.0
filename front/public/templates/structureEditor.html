@@ -1,0 +1,447 @@
+<div
+	class="regularForm snapshotSelectorTemplate"
+	style="width: 900px; height: 672px;">
+
+  <div id="window-header">
+		<div class="caption-wrapper">
+			<div class="caption">
+        Текущая структура
+      </div>
+		</div>
+		<div class="spacer" style="width: 100%;"></div>
+	</div>
+
+    <div style="
+			height: 456px;
+			overflow: auto;">
+      <script type="text/ng-template" id="element">
+        <div style="
+					height: 48px;
+					margin-top: 4px;
+					margin-bottom: 4px;"
+					ng-init="self = child.id">
+          <div style="
+            float: left;
+            padding-top: 15px;
+            padding-bottom: 15px;"
+						ng-init="collapsed = false">
+						<div
+							style="
+								width: 18px;
+								height: 18px;
+								background: #FFD740;"
+							ng-show="child.children.length > 0">
+	            <img
+	              style="
+									width: 18px;
+									height 18px;"
+	              src="img/icons/ic_arrow_drop_down_white_18dp_1x.png"
+								ng-show="!collapsed"
+								ng-click="collapsed = !collapsed">
+	            <img
+	              style="
+									width: 18px;
+									height 18px;"
+	              src="img/icons/ic_arrow_drop_up_white_18dp_1x.png"
+								ng-show="collapsed"
+								ng-click="collapsed = !collapsed">
+						</div>
+						<div style="
+							width: 18px;
+							height: 18px;"
+							ng-show="child.children.length == 0">
+						</div>
+          </div>
+          <div style="
+            padding-left: 8px;
+            float: left;">
+            <div style="
+              height: 48px;
+              display: table-cell;
+              vertical-align: middle;
+              font-size: 12pt;">
+              {{child.name}}<span style="margin-left: 6px;" ng-show="child.collective">[представление]</span>
+            </div>
+          </div>
+					<div
+						ng-hide = "child.fabricated"
+						style="
+						height: 48px;
+						padding-right: 12px;
+						float: right;">
+							<img
+								style="
+									width: 18px;
+									height: 18px;
+									padding: 3px;
+									margin-top: 12px;
+									margin-bottom: 12px;
+									background: #FFD740"
+								src="img/icons/ic_create_white_24dp_1x.png"
+								ng-click="Edit(child)">
+							<img
+								style="
+									width: 18px;
+									height: 18px;
+									padding: 3px;
+									margin-top: 12px;
+									margin-bottom: 12px;
+									background: #FFD740"
+								src="img/icons/ic_add_white_24dp_1x.png"
+								ng-click="OpenAddingDialog(child)">
+							<img
+								style="
+									width: 18px;
+									height: 18px;
+									padding: 3px;
+									margin-top: 12px;
+									margin-bottom: 12px;
+									background: #9E9E9E;"
+								src="img/icons/ic_delete_white_24dp_1x.png"
+								ng-hide="child.collective"
+								ng-click="OpenDeleteDialog(child)">
+          </div>
+        </div>
+				<ul style="
+          list-style: none;
+          padding: 0px;
+          margin: 0px;"
+					ng-if="!collapsed && (child.children.length > 0)">
+          <li
+						style="
+							margin-top: 4px;
+							margin-bottom: 4px;
+							padding-left: 24px;"
+						ng-repeat="child in child.children"
+						ng-include="'element'"
+						ng-init="parent = self">
+          </li>
+        </ul>
+      </script>
+      <div style="padding: 24px;">
+        <div style="
+					height: 48px;
+					margin-top: 4px;
+					margin-bottom: 4px;">
+          <div style="
+            float: left;
+            padding-top: 15px;
+            padding-bottom: 15px;"
+						ng-init="collapsed = false">
+						<div
+							style="
+								width: 18px;
+								height: 18px;
+								background: #FFD740;"
+							ng-show="head.children.length > 0">
+	            <img
+	              style="
+									width: 18px;
+									height 18px;"
+	              src="img/icons/ic_arrow_drop_down_white_18dp_1x.png"
+								ng-show="!collapsed"
+								ng-click="collapsed = !collapsed">
+	            <img
+	              style="
+									width: 18px;
+									height 18px;"
+	              src="img/icons/ic_arrow_drop_up_white_18dp_1x.png"
+								ng-show="collapsed"
+								ng-click="collapsed = !collapsed">
+						</div>
+						<div style="
+							width: 18px;
+							height: 18px;"
+							ng-show="head.children.length == 0">
+						</div>
+          </div>
+          <div style="
+            padding-left: 8px;
+            float: left;">
+            <div style="
+              height: 48px;
+              display: table-cell;
+              vertical-align: middle;
+              font-size: 12pt;">
+              {{head.name}}
+            </div>
+          </div>
+          <div style="
+						height: 48px;
+						padding-right: 12px;
+						float: right;">
+							<img
+								style="
+									width: 18px;
+									height: 18px;
+									padding: 3px;
+									margin-top: 12px;
+									margin-bottom: 12px;
+									background: #FFD740"
+								src="img/icons/ic_create_white_24dp_1x.png"
+								ng-click="Edit(head)">
+							<img
+								style="
+									width: 18px;
+									height: 18px;
+									padding: 3px;
+									margin-top: 12px;
+									margin-bottom: 12px;
+									background: #FFD740"
+								src="img/icons/ic_add_white_24dp_1x.png"
+								ng-click="OpenAddingDialog(head)">
+          </div>
+        </div>
+        <ul style="
+          list-style: none;
+          padding: 0px;
+          margin: 0px;"
+					ng-if="!collapsed">
+          <li
+						style="
+							margin-top: 4px;
+							margin-bottom: 4px;
+							padding-left: 24px;"
+						ng-repeat="child in head.children"
+						ng-include="'element'"
+						ng-init="parent = head.id">
+          </li>
+        </ul>
+    	</div>
+		</div>
+
+		<div id="window-footer">
+			<div class="float-right" style="margin-top: 18px; margin-right: 12px;">
+				<pl-button action="Close" caption="Закрыть"></pl-button>
+			</div>
+		</div>
+
+		<div style="
+			width: 100%;
+			height: 100%;
+			left: 0px;
+			top: 0px;
+			position: absolute;
+			opacity: 0.5;
+			background: #FEFEFE;"
+			ng-if="AddingDialog || DeletingDialog">
+		</div>
+
+		<div style="
+			width: 768px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: #FFFFFF;
+			box-shadow: 0px 0px 8px rgba(0,0,0,0.2);"
+			ng-if="AddingDialog">
+
+				<div style="
+					height: 48px;
+					background: #FFD740;">
+
+					<div style="
+						float: left;
+						padding-left: 24px;">
+						<div style="
+							height: 48px;
+							display: table-cell;
+							vertical-align: middle;
+							font-size: 14pt;
+							color: #424242;">
+							Добавить информер
+						</div>
+					</div>
+
+				</div>
+
+				<div style="
+					height: 72px;
+					background: #F5F5F5;">
+
+					<div style="
+						float: right;
+						padding-right: 24px;">
+						<div style="
+							height: 72px;
+							display: table-cell;
+							vertical-align: middle;">
+							<input
+								style="
+									width: 256px;
+									height: 24px;
+									margin: 0px;
+									padding-left: 4px;
+									padding-right: 4px;
+									font-size: 10pt;
+									border: 0px solid #FFFFFF;"
+								type="text"
+								placeholder="Поиск"
+								ng-model="searchInput"/>
+						</div>
+					</div>
+
+					<div style="float: right;">
+						<div style="
+							height: 72px;
+							display: table-cell;
+							vertical-align: middle;
+							padding-right: 12px;">
+							<span>Категория:</span>
+							<select style="
+								min-width: 128px;
+								height: 24px;
+								margin: 0px;
+								padding: 0px;
+								font-size: 10pt;
+								border: 0px solid #FFFFFF;"
+								ng-model="selectedCategory">
+								<option
+									value = "{{category}}"
+									ng-repeat="category in categories">{{setCategoryHeader(category)}}</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+
+				<ul style="
+					list-style: none;
+					padding-top: 0px;
+					padding-bottom: 0px;
+					padding-left: 12px;
+					padding-right: 0px;
+					margin: 0px;
+					overflow: auto;
+					height: 340px;">
+					<li
+						style="
+							width: 128px;
+							height: 152px;
+							padding: 8px;
+							float: left;"
+						ng-repeat="snapshot in snapshots | filter:{name:searchInput}"
+						ng-if="FitsCategory(snapshot.category,selectedCategory) && (snapshot.id != SelectedParent.id)">
+						<div style="
+							margin: 8px;
+							position: relative;">
+							<img
+								style="
+									width: 112px;
+									height: 112px;"
+								src="{{snapshot.imgPath}}"
+								ng-click="snapshot.count = PushIn(snapshot)">
+							<div style="
+								width: 24px;
+								height: 24px;
+								position: absolute;
+								top: 0;
+								left: 88px;
+								background: #FFD740;"
+								ng-show="snapshot.count > 0"
+								ng-click="snapshot.count = PushOut(snapshot)">
+								<div style="padding:2px;">
+									<div style="
+										height: 20px;
+										width: 20px;
+										display: table-cell;
+										vertical-align: middle;
+										text-align: center;
+										color: #424242;
+										font-size: 10pt;">
+										{{snapshot.count}}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div style="
+							width: 128px;
+							height: 24px;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							text-align: center;">
+							<span style="font-size: 10pt;">{{snapshot.name}}</span>
+						</div>
+					</li>
+				</ul>
+
+				<div style="
+					height: 72px;
+					background: #F5F5F5;">
+
+					<div style="
+						height: 36px;
+						margin-top: 18px;
+						margin-left: 24px;
+						float: left;">
+						<div style="
+							height: 36px;
+							display: table-cell;
+							vertical-align: middle;
+							font-size: 12pt;">
+							Всего выбрано: {{ChildrenBulk.length}}
+						</div>
+					</div>
+
+					<div class="float-right" style="margin-top: 18px; margin-right: 24px;">
+						<pl-button action="Add" caption="Добавить"></pl-button>
+					</div>
+					<div class="float-right" style="margin-top: 18px; margin-right: 12px;">
+						<pl-button action="CloseAddingDialog" caption="Отменить"></pl-button>
+					</div>
+
+				</div>
+
+		</div>
+
+		<div style="
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 512px;
+			background: #FFFFFF;
+			box-shadow: 0px 0px 8px rgba(0,0,0,0.2);"
+			ng-if="DeletingDialog">
+			<div style="
+				height: 48px;
+				background: #FFD740;
+				color: #424242;
+				padding-left: 24px;">
+				<div
+					style="
+					height: 48px;
+					display: table-cell;
+					vertical-align: middle;">
+					Удаление дочернего элемента
+				</div>
+			</div>
+			<div style="padding: 24px;">
+				<div style="
+					height: 48px;
+					display: table-cell;
+					vertical-align: middle;">
+					<span style="
+						padding-right: 8px;
+						font-size: 12pt;">
+						Вы действительно хотите удалить элемент "{{SelectedElement.name}}"?
+					</span>
+				</div>
+
+				<div style="
+					height: 36px;
+					padding-top: 24px;">
+
+					<div class="float-right">
+						<pl-button action="Remove" caption="Удалить"></pl-button>
+					</div>
+					<div class="float-right" style="margin-right: 12px;">
+						<pl-button action="CloseDeleteDialog" caption="Отменить"></pl-button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+</div>

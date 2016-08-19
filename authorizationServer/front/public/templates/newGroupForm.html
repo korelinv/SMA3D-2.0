@@ -1,0 +1,75 @@
+<div class="content-wrap">
+
+  <div class="header-medium padding-top-large padding-bottom-large padding-left-large padding-right-large">
+    Новая группа
+  </div>
+
+  <form class="padding-right-regular padding-left-regular width-50p" style="margin-left: auto; margin-right: auto;" name="form" novalidate>
+    <div class="padding-top-regular padding-bottom-regular">
+      <span>Идентификатор</span>
+      <input
+        class="input"
+        type="text"
+        name="gid"
+        placeholder="введите идетификатор"
+        ng-model="newGroup.id"
+        required>
+      <div ng-show="form.gid.$dirty">
+        <div class="validation-v-text" ng-show="form.gid.$error.required">обязательное поле</div>
+      </div>
+    </div>
+    <div class="padding-top-regular padding-bottom-regular">
+      <span>Название</span>
+      <input
+        class="input"
+        type="text"
+        name="gname"
+        placeholder="введите название"
+        ng-model="newGroup.name"
+        required>
+      <div ng-show="form.gname.$dirty">
+        <div class="validation-v-text" ng-show="form.gname.$error.required">обязательное поле</div>
+      </div>
+    </div>
+
+    <div class="padding-top-regular padding-bottom-regular">
+      <span>Стартовый информер: </span>
+      <span>{{findSnapshot(newGroup.startFrom)}}</span>
+      <span ng-if="!newGroup.startFrom">не указан</span>
+    </div>
+
+    <table>
+      <th>
+        <td>
+          <input type="text" placeholder="Идентификатор">
+        </td>
+        <td>
+          <input type="text" placeholder="Название">
+        </td>
+        <td>
+          <input type="text" placeholder="Категория">
+        </td>
+      </th>
+    </table>
+    <div style="max-height: 300px; overflow-y: scroll;">
+      <table>
+        <tr ng-repeat="snapshot in avalibleSnapshots" ng-click="setStartingSnapshot(snapshot.id)">
+          <td>
+            {{snapshot.id}}
+          </td>
+          <td>
+            {{snapshot.name}}
+          </td>
+          <td>
+            <span ng-repeat="category in snapshot.category">{{category}}</span>
+          <td>
+        </th>
+      </table>
+    </div>
+
+    <div class="padding-top-large padding-bottom-regular height-medium">
+      <button class="button float-right" ng-click="GoBack()">Отменить</button>
+      <input class="button float-right margin-right-regular" type="submit" ng-disabled="!form.$valid || !newGroup.startFrom" ng-click="Submit()" value="Создать">
+    </div>
+
+</div>

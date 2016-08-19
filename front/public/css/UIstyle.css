@@ -1,0 +1,331 @@
+/* Layout */
+
+.overlayForm {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,25%);
+	transform: translate(-50%,25%);
+	z-index: 9999;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.regularForm {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	z-index: 9998;
+	vertical-align: top;
+	-webkit-transform: translate(-50%,25%);
+	transform: translate(-50%,25%);
+	box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+
+
+
+/* PopUP Template */
+
+.popUpTemplate {
+	width: 350px;
+	background: #ffffff;
+}
+
+#popUpCaption {
+	margin: 10px;
+	font-size: 16pt;
+}
+
+#popUpText {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	min-height: 50px;
+	font-size: 12pt;
+}
+
+#popUpButton {
+	margin: 10px;
+}
+
+#popUpButton button {
+    width:100px;
+    height:25px;
+    display:block;
+    margin: 0 auto;
+}
+
+
+
+
+/* Snapshot selector */
+.snapshotSelectorTemplate {
+	width: 600px;
+	background: #ffffff;
+}
+#snapshotSelectorCaption {
+	margin: 10px;
+	font-size: 16pt;
+}
+#snapshotSeletorControls {
+	height: 25px;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+#snapshotGrid {
+	margin: 15px;
+	height: 400px;
+	overflow-y: scroll;
+}
+#snapshotGridSmall {
+	margin: 15px;
+	height: 200px;
+	overflow-y: scroll;
+}
+#snapshotGridSmall ul, #snapshotGrid ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+#snapshotShortcut {
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin: 5px;
+  border: 0px solid #fff;
+}
+#snapshotShortcut:hover {
+	background-color: #66ccff;
+}
+#snapshotShortcut img {
+	width: 70px;
+	height: 70px;
+	display: block;
+	margin-top: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#snapshotShortcutCaption {
+	font-size: 10pt;
+	margin: 2px;
+	text-align: center;
+}
+
+
+/* Snapshot creator */
+.snapshotCreatorTemplate {
+	width: 500px;
+	background: #ffffff;
+}
+
+/* Structure editor */
+.structureEditorTemplate {
+	width: 800px;
+	background: #ffffff;
+}
+#structureContainer {
+	height: 500px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+
+/* Service Editor */
+/* Service List */
+.serviceEditorTemplate {
+	width: 600px;
+	background: #ffffff;
+}
+#serviceListing {
+	height: 400px;
+	overflow-y: scroll;
+}
+#serviceDetails {
+	width: 485px;
+}
+#serviceEditingBlock {
+	width: 30px;
+}
+
+/* Service Info */
+.serviceInfoTemplate {
+	width: 500px;
+	background: #ffffff;
+}
+.serviceInfoInput {
+	width: 450px;
+}
+.requiredParameter {
+	background: #ABEAFF;
+}
+.optionalParameter {
+	background: #CFCFCF;
+}
+
+
+/* ViewUnitSettings */
+.settingsPage {
+
+	height: 400px;
+	overflow-y: scroll;
+
+}
+
+
+/* Sandbox */
+.sandboxSwitchOn {
+	color: #404040;
+	font-size: 14px;
+	background: #e6ffcc;
+	padding: 5px 10px 5px 10px;
+	border: solid #000000 0px;
+	text-decoration: none;
+}
+
+.sandboxSwitchOn:hover {
+	background: #f2ffe6;
+	text-decoration: none;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.sandboxSwitchOff {
+	color: #404040;
+	font-size: 14px;
+	background: #ffffff;
+	padding: 5px 10px 5px 10px;
+	border: dotted #404040 1px;
+	text-decoration: none;
+}
+
+.sandboxSwitchOff:hover {
+	background: #ffffff;
+	text-decoration: none;
+	cursor: hand;
+	cursor: pointer;
+}
+
+
+
+/* Common */
+
+.headerNormal {
+	font-size: 16pt;
+}
+
+.headerBig {
+	font-size: 18pt;
+}
+
+.textNormal {
+	font-size: 12pt;
+}
+
+.textSmall {
+	font-size: 10px;
+}
+
+.textExtraSmall {
+	font-size: 8px;
+}
+
+.textOverflowXElipses {
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+
+
+.marginTight {
+	margin: 5px;
+}
+
+.marginRegular {
+	margin: 10px;
+}
+
+.marginBig {
+	margin: 15px;
+}
+
+.marginExtraSpaced {
+	margin: 25px;
+}
+
+
+
+.paddingNone {
+	padding: 0px;
+}
+
+.paddingTight {
+	padding: 2px;
+}
+
+.paddingRegular {
+	padding: 5px;
+}
+
+.paddingBig {
+	padding: 10px;
+}
+
+
+
+.inlineBlock {
+	display: inline-block;
+}
+
+.error {
+	color: #FE2E2E;
+}
+
+.uibutton {
+	color: #ffffff;
+	font-size: 14px;
+	background: #5f6970;
+	padding: 5px 10px 5px 10px;
+	border: solid #000000 0px;
+	text-decoration: none;
+}
+
+.uibutton:hover {
+	background: #6f6f70;
+	text-decoration: none;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.uitextinput {
+	border: 1px solid;
+	border-color: #E6E6E6;
+	padding: 3px;
+}
+
+
+.pointerOver-Hand:hover {
+	cursor: hand;
+	cursor: pointer;
+}
+
+.pointerOver-BgHighlight:hover {
+	background-color: #66ccff;
+}
+
+.insideShadow {
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.borderStraight {
+	border: 1px solid;
+}
+
+.borderRounded {
+	border: 1px solid;
+	border-color: #E6E6E6;
+	border-radius: 6px;
+}

@@ -1,0 +1,293 @@
+{
+  "id": "models/smaKit/map/map3d",
+  "name": "Карта",
+  "icon": "",
+  "info": "карта",
+  "defaults": {
+    "settings": {
+      "dataset":"",
+      "variables": [
+        {
+          "id":"posX",
+          "name":"координата X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"posY",
+          "name":"координата Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"posZ",
+          "name":"координата Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleX",
+          "name":"масштаб X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleY",
+          "name":"масштаб Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleZ",
+          "name":"масштаб Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"rotationX",
+          "name":"поворот по оси X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"rotationY",
+          "name":"поворот по оси Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"rotationZ",
+          "name":"поворот по оси Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"offsetRotationX",
+          "name":"дополнительный поворот по оси X",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"offsetRotationY",
+          "name":"дополнительный поворот по оси Y",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"offsetRotationZ",
+          "name":"дополнительный поворот по оси Z",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+
+
+
+
+        {
+          "id":"markerScaleX",
+          "name":"масштаб маркера (X)",
+          "value": 1,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"markerScaleY",
+          "name":"масштаб маркера (Y)",
+          "value": 1,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"markerScaleZ",
+          "name":"масштаб маркера (Z)",
+          "value": 1,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"ankerX",
+          "name":"точка привязки карты (X)",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"ankerY",
+          "name":"точка привязки карты (Y)",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"selectedMarkerId",
+          "name":"Идентификатор выбранного МФЦ",
+          "value": -1,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@int",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"selectedMarkerName",
+          "name":"Название выбранного МФЦ",
+          "value": "",
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@string",
+          "__type":"SMA.system.Variable"
+        }
+
+
+
+      ],
+      "fields": [
+        {
+          "id":"geo",
+          "name":"Координаты маркера",
+          "path":"",
+          "type":"@string",
+          "__type":"SMA.system.Field"
+        },
+        {
+          "id":"name",
+          "name":"Название МФЦ",
+          "path":"",
+          "type":"@string",
+          "__type":"SMA.system.Field"
+        },
+        {
+          "id":"id",
+          "name":"Идентификатор МФЦ",
+          "path":"",
+          "type":"@int",
+          "__type":"SMA.system.Field"
+        },
+
+        {
+          "id":"chunk1",
+          "name":"блок 1",
+          "path":"",
+          "type":"@int",
+          "__type":"SMA.system.Field"
+        },
+        {
+          "id":"chunk2",
+          "name":"блок 2",
+          "path":"",
+          "type":"@int",
+          "__type":"SMA.system.Field"
+        },
+        {
+          "id":"chunk3",
+          "name":"блок 3",
+          "path":"",
+          "type":"@int",
+          "__type":"SMA.system.Field"
+        },
+        {
+          "id":"chunk4",
+          "name":"блок 4",
+          "path":"",
+          "type":"@int",
+          "__type":"SMA.system.Field"
+        }
+
+
+      ],
+      "actions": [
+        {
+          "id": "onSelectMarker",
+          "name": "Действие при выборе маркера",
+          "steps": [],
+          "__type": "SMA.system.Action"
+        },
+        {
+          "id": "onStart",
+          "name": "Действие на старте",
+          "steps":[],
+          "__type": "SMA.system.Action"
+        },
+        {
+          "id": "onFinished",
+          "name": "Действие после завершения",
+          "steps":[],
+          "__type": "SMA.system.Action"
+        },
+        {
+          "id": "onChanged",
+          "name": "Действие при изменении",
+          "steps":[],
+          "__type": "SMA.system.Action"
+        }
+      ],
+      "modificators": [],
+      "methods": {},
+      "__type": "SMA.system.ViewSettings"
+    }
+  }
+}

@@ -1,0 +1,296 @@
+<div
+	class="regularForm snapshotSelectorTemplate"
+	style="width: 900px; height: 672px;">
+
+	<div id="window-header">
+		<div class="caption-wrapper">
+			<div class="caption">
+				Новый информер
+			</div>
+		</div>
+		<div class="spacer" style="width: 500px;"></div>
+		<pl-tab-button class="display-table-cell" index="0" caption="Описание" current="page" width="200"></pl-tab-button>
+		<pl-tab-button class="display-table-cell" index="1" caption="Модель" current="page" width="200"></pl-tab-button>
+	</div>
+
+	<div style="height: 456px;">
+		<div
+			style="padding: 24px;"
+			ng-show="page == 0">
+			<div style="height: 128px; padding-left: 24px; padding-top: 24px; position: relative;">
+				<div style="height: 128px; float: left;">
+					<img
+						style="width: 128px; height: 128px;"
+						src="{{snapshot.imgPath}}"
+						ng-init="unfolded = false"
+						ng-click="unfolded = !unfolded">
+					<div
+						style="width: 300px; height: 24px; position: absolute; left:160px; top: 24px; "
+						ng-show="unfolded">
+						<input
+							type="text"
+							style="width: 100%; height: 100%; border: 0px solid #FFFFFF; font-size: 10pt;"
+							placeholder="http://..."
+							ng-model="snapshot.imgPath"/>
+					</div>
+				</div>
+				<div style="height: 128px; float: left; padding-left: 16px;">
+					<div style="height: 48px; padding-top: 56px;">
+						<div style="height: 48px; display: table-cell; vertical-align: bottom;">
+							<input
+								type="text"
+								style="width: 648px; font-size: 18pt; margin: 0px; padding: 0px; border: 0px solid #FFFFFF;"
+								placeholder="Название информера"
+								ng-model="snapshot.name"/>
+						</div>
+					</div>
+					<div style="height: 24px;">
+						<div style="height: 24px; display: table-cell; vertical-align: middle; font-size: 10pt; color: #757575;">
+							{{snapshot.id}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="padding-top: 24px; padding-left: 24px;">
+
+				<div style="padding: 4px; margin: 4px; font-size: 12pt;">
+					<input
+						type="checkbox"
+						ng-model="snapshot.appInpoint">Является приложением</input>
+				</div>
+				<div>
+					<div style="float: left; padding: 4px; margin: 4px;">
+						<div style="height: 24px;display: table-cell; vertical-align: middle; font-size: 12pt;">
+							Категории:
+						</div>
+					</div>
+					<div style="min-height: 48px;">
+
+						<div
+							style="height: 24px; min-width: 72px; float: left; padding: 4px; margin: 4px; background: #F5F5F5; "
+							ng-repeat="category in snapshot.category">
+							<div style="float: left;">
+								<div style="height: 24px; padding-left: 8px; padding-right: 24px; display: table-cell; vertical-align: middle; font-size: 12pt;">
+									{{category}}
+								</div>
+							</div>
+							<div style="height: 18px; width: 18px; float: right; margin: 3px; opacity: 0.2;">
+								<img
+									src="img/icons/ic_delete_black_18dp_1x.png"
+									ng-click="removeCategory(category)">
+							</div>
+						</div>
+
+						<div style="float: left; margin: 4px;">
+							<input
+								type="text"
+								style="width: 200px; height: 32px; margin: 0px; padding: 0px; border: 0px solid #FFFFFF; font-size: 12pt"
+								placeholder="..."
+								ng-model="newCategory"
+								ng-keypress="categorySubmit($event)"></input>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			style="padding-left: 24px; padding-right: 24px; padding-bottom: 0px; padding-top: 0px;"
+			ng-show="page == 1">
+
+			<div
+				style="position: relative; z-index: 10;"
+				ng-init="unfolded = false;">
+				<div
+					style="position: absolute; top: 24px; left: 0px; height: 32px; width: 32px; background: #F5F5F5;"
+					ng-show="!unfolded">
+					<img
+						style="width: 24px; height: 24px; padding: 4px; opacity: 0.2;"
+						src="img/icons/ic_menu_black_24dp_1x.png"
+						ng-click="unfolded = !unfolded">
+				</div>
+				<div
+					style="height: 32px; position: absolute; top: 24px; left: 0px; background: #F5F5F5;"
+					ng-show="unfolded">
+					<div style="float: left; padding: 4px;">
+						<div style="background: #FFFFFF;">
+							<span style="font-size: 10pt; padding-left: 16px;">Поиск:</span>
+							<input
+								type="text"
+								ng-model="modelSearch"
+								style="height: 24px; width: 256px; padding: 0px; margin: 0px; border: 0px solid #FFFFFF; font-size: 10pt;"></input>
+						</div>
+					</div>
+					<div style="float: left;">
+						<img
+							style="width: 24px; height: 24px; padding: 4px; opacity: 0.2;"
+							src="img/icons/ic_menu_black_24dp_1x.png"
+							ng-click="unfolded = !unfolded">
+					</div>
+				</div>
+			</div>
+			<ul style="width: 100%; height: 400px; list-style: none; margin: 0px; padding-top: 56px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; overflow: auto;">
+				<li
+					style="width: 128px; height: 152px; float: left; padding: 8px;"
+					ng-style="highlightedModel(model.id)"
+					ng-repeat="model in models | filter:{name:modelSearch}">
+					<div style="margin: 8px; position: relative;">
+						<img
+							style="width: 112px; height: 112px;"
+							ng-src="model.icon"
+							ng-click="SelectModel(model)">
+					</div>
+					<div style="width: 128px; height: 24px; overflow: hidden; text-overflow: ellipsis; text-align: center;">
+						<span style="font-size: 10pt;">{{model.name}}</span>
+					</div>
+				</li>
+				<div style="float: left; width: 100%; height: 24px;"></div>
+			</ul>
+		</div>
+	</div>
+
+	<div id="window-footer">
+		<div ng-if="!new">
+			<div class="float-left" style="margin-top: 18px; margin-left: 24px;">
+				<pl-button action="TryDelete" caption="Удалить информер"></pl-button>
+			</div>
+			<div class="float-left" style="margin-top: 18px; margin-left: 12px;">
+				<pl-button action="Clone" caption="Создать копию"></pl-button>
+			</div>
+		</div>
+		<div class="float-right" style="margin-top: 18px; margin-right: 24px;">
+			<pl-button action="Save" caption="Сохранить"></pl-button>
+		</div>
+		<div class="float-right" style="margin-top: 18px; margin-right: 12px;">
+			<pl-button action="Cancel" caption="Отменить"></pl-button>
+		</div>
+	</div>
+
+	<div style="
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		left: 0px;
+		background: #FEFEFE;
+		opacity: 0.8;"
+		ng-if="redirectDialog || deleteDialog">
+	</div>
+
+	<div style="
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 512px;
+		background: #FFFFFF;
+		box-shadow: 0px 0px 8px rgba(0,0,0,0.2);"
+		ng-if="redirectDialog">
+		<div style="
+			height: 48px;
+			background: #FFD740;
+			color: #424242;
+			padding-left: 24px;">
+			<div
+				style="
+				height: 48px;
+				display: table-cell;
+				vertical-align: middle;">
+				Клонирование элемента
+			</div>
+		</div>
+		<div style="padding: 24px;">
+			<div style="
+				height: 48px;
+				display: table-cell;
+				vertical-align: middle;">
+				<span style="
+					padding-right: 8px;
+					font-size: 12pt;">
+					Перейти к клонированному элементу?
+				</span>
+			</div>
+			<div style="
+				height: 36px;
+				padding-top: 24px;">
+
+				<div class="float-right">
+					<pl-button action="GoToClone" caption="Перейти"></pl-button>
+				</div>
+
+				<div class="float-right">
+					<pl-button action="CloseRedirectDialog" caption="Отменить"></pl-button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div style="
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 512px;
+		background: #FFFFFF;
+		box-shadow: 0px 0px 8px rgba(0,0,0,0.2);"
+		ng-if="deleteDialog">
+		<div style="
+			height: 48px;
+			background: #FFD740;
+			color: #424242;
+			padding-left: 24px;">
+			<div
+				style="
+				height: 48px;
+				display: table-cell;
+				vertical-align: middle;">
+				Удаление элемента
+			</div>
+		</div>
+		<div style="padding: 24px;">
+			<div style="
+				height: 48px;
+				display: table-cell;
+				vertical-align: middle;">
+				<span style="
+					padding-right: 8px;
+					font-size: 12pt;">
+					Вы действительно хотите удалить элемент "{{snapshot.name}}"
+				</span>
+			</div>
+
+			<div
+				style="
+					padding-top: 12px;
+					font-size: 12pt;"
+				ng-if="dependencies.length > 0">
+				Зависимые элементы:
+			</div>
+			<ul style="
+				list-style: none;
+				padding-left: 16px;
+				margin-top: 8px;
+				margin-bottom: 8px;
+				font-size: 10pt;
+				max-height: 200px;
+				overflow: auto;">
+				<li ng-repeat="element in dependencies">{{element.name}}</li>
+			</ul>
+
+			<div style="
+				height: 36px;
+				padding-top: 24px;">
+
+				<div class="float-right">
+					<pl-button action="Delete" caption="Удалить"></pl-button>
+				</div>
+
+				<div class="float-right" style="margin-right: 12px;">
+					<pl-button action="CloseDeleteDialog" caption="Отменить"></pl-button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>

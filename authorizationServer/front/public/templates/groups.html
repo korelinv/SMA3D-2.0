@@ -1,0 +1,20 @@
+<div class="content-wrap">
+  Группы
+
+  <div class="width-100p height-medium">
+    <div class="float-right">
+      <img
+        class="icon-medium padding-right-regular"
+        src=""
+        title="Добавить группу"
+        ng-click="AddNewGroup()">
+    </div>
+  </div>
+
+
+  <ul>
+    <li ng-repeat="group in groups">
+      {{group.name}}
+    </li>
+  </ul>
+</div>

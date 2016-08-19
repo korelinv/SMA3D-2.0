@@ -1,0 +1,57 @@
+<div class="content-wrap">
+
+  <div class="header-medium height-medium padding-top-large padding-bottom-large padding-left-large padding-right-large">
+    История
+  </div>
+
+  <div class="logFilterTab">
+    <div class="padding-bottom-regular padding-top-regular padding-bottom-regular padding-left-regular padding-right-regular">
+      Фильтры
+    </div>
+    <div id="filter-container" class="padding-top-regular padding-bottom-regular padding-left-regular padding-right-regular">
+      <div class="float-left height-medium margin-left-regular margin-top-regular margin-bottom-regular">
+        ip адрес: <input type="text" class="input" placeholder="ip" ng-model="filter.ip"/>
+      </div>
+      <div class="float-left margin-left-regular margin-top-regular margin-bottom-regular">
+        логин: <input type="text" class="input" placeholder="логин" ng-model="filter.login"/>
+      </div>
+      <div class="float-left margin-left-regular margin-top-regular margin-bottom-regular">
+        код ответа:
+        <select class="select" ng-model="filter.code">
+          <option value="">все</option>
+          <option value="200">подтверждение</option>
+          <option value="401">отказ</option>
+          <option value="400">некорректный запрос</option>
+        </select>
+      </div>
+      <div class="float-left margin-left-regular margin-top-regular margin-bottom-regular">
+        дата начала: <input type="date" class="input" ng-model="sdate" ng-change="UpdateLogs()"/>
+      </div>
+      <div class="float-left margin-left-regular margin-top-regular margin-bottom-regular">
+        дата окончания: <input type="date" class="input" ng-model="edate" ng-change="UpdateLogs()"/>
+      </div>
+    </div>
+  </div>
+
+
+
+  <table ng-if="logs.length > 0" class="logTable width-100p">
+    <tr>
+      <td>ip</td>
+      <td>логин</td>
+      <td>код ответа</td>
+      <td>дата</td>
+    <tr>
+    <tr ng-repeat="item in logs | filter:filter.ip | filter:filter.login | filter:filter.code">
+      <td>{{item.ip}}</td>
+      <td>{{item.login}}</td>
+      <td>{{item.status}}</td>
+      <td>{{item.date}}</td>
+    </tr>
+  </table>
+
+  <div ng-if="logs.length == 0">
+    нет записей
+  </div>
+
+</div>
