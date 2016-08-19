@@ -1,5 +1,5 @@
 angular.module('controller.login',['ui.router','service.userData','service.session','service.snapshots'])
-    .controller('loginFormCtrl', function($scope, $http, $state, $session, $userData, snapshots) {
+    .controller('loginFormCtrl', function($scope, $http, $state, $session, $userData, $snapshots) {
         $scope.TryLogin = function (login, password) {
             $http({
                method: 'POST',

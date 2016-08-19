@@ -2,9 +2,53 @@ const parameterType = ["@int","@float","@double","@string","@long","@boolean","@
 const actionType = [{name: "замена", value: "swap"},{name: "отправка", value:"send"},{name: "вызов метода", value: "invoke"}];
 const descriptorFieldType = [{name: "простое поле",value: "simple"},{name: "составное поле",value: "complex"},{name: "коллкеция",value: "collection"}];
 
-const app = angular.module('smaWebUI',['ui.router'])
+const app = angular.module('smaWebUI',
+		[
+			'ui.router',
 
-	.config(function config($stateProvider) {
+			'service.session',
+
+			'controller.login',
+			'controller.static'
+		])
+
+		.config(function config($stateProvider) {
+				$stateProvider.state('login', {
+						url: '/login',
+						views: {
+					      'main' : {
+						        controller: 'loginFormCtrl as loginForm',
+						        templateUrl: 'views/login.html'
+					      }
+				    }
+				});
+				$stateProvider.state('main', {
+						views: {
+								abstract: true,
+					      'main' : {
+						        controller: 'staticCtrl as static',
+						        templateUrl: 'views/static.html'
+					      }
+				    }
+				});
+				$stateProvider.state('main.test', {
+						url: '/snapshots',
+						views: {
+								'modal@main' : {
+										controller: 'snapshotSelectorCtrl as snapshotSelector',
+										templateUrl: 'templates/snapshotSelector.html'
+								}
+				    }
+				});
+				$stateProvider.state('main.index', {
+						url: '/playground',
+						views: {
+								'modal@main' : {
+										template: ''
+								}
+				    }
+				});
+		/*
 		$stateProvider.state("index", {
 			templateUrl: "templates/index.html"
 		})
@@ -36,14 +80,19 @@ const app = angular.module('smaWebUI',['ui.router'])
 			controller: "startScreenEditorCtrl as startScreenEditor",
 			templateUrl: "templates/startScreenEditor.html"
 		})
+		*/
 	})
 
 
-
+	/*
 	.run(function ($http, editorModel) {
 		editorModel.Start();
 	})
+	*/
 
+	.run(['$state', function($state) {
+		$state.transitionTo('login');
+	}])
 
 	.directive('unityWebGl', function () {
 		return {
@@ -486,7 +535,7 @@ const app = angular.module('smaWebUI',['ui.router'])
 		this.instance = null;
 	})
 
-
+	/*
 	.controller('loginForm', function ($scope, $http) {
 		$scope.Authorize = function (login,password) {
 			$http({
@@ -501,12 +550,13 @@ const app = angular.module('smaWebUI',['ui.router'])
 			.catch((error) => {console.error(error)})
 		};
 	})
+	*/
 
 	.controller('hamburgerMenu', function ($scope, $state) {
 		$scope.menuItems = [
 			{
 				caption: 'Информеры',
-				state: 'snapshotSelector',
+				state: 'main.test', //snapshotSelector',
 				icon: 'img/icons/ic_insert_chart_black_24dp_1x.png'
 			},
 			{
@@ -652,7 +702,7 @@ const app = angular.module('smaWebUI',['ui.router'])
 		};
 
 		$scope.Close = function () {
-			$timeout(function () {$state.go('index')}, 400);
+			$timeout(function () {$state.go('main.index')}, 400);
 			$scope.css.window = "fade-out";
 		};
 	})

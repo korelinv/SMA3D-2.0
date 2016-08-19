@@ -1,0 +1,24 @@
+<div id="loginForm">
+  <img class="loginFormLogo" src="http://www.clipartbest.com/cliparts/nTE/7qR/nTE7qRKkc.png">
+  <div>
+    <div class="loginFormInputContainer">
+      <input
+        class="loginFormInput"
+        type="text"
+        placeholder="Логин"
+        ng-model="login"/>
+    </div>
+    <div class="loginFormInputContainer">
+      <input
+        class="loginFormInput"
+        type="password"
+        placeholder="Пароль"
+        ng-model="password"/>
+    </div>
+    <div class="loginFormInputContainer">
+      <button
+        class="loginFormButton"
+        ng-click="TryLogin(login,password)">Войти</button>
+    </div>
+  </div>
+</div>

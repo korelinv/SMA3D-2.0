@@ -1,0 +1,16 @@
+
+<div ng-show="!compiled">
+  <div>
+    Загрузка ...
+  </div>
+</div>
+
+<div ng-show="approved && compiled">
+  <div id="unityLink" ng-controller="unityLink"></div>
+  <unity-web-gl id="webglCanvas"></unity-web-gl>
+</div>
+
+<div ng-if="privileges.edit">
+  <hamburger-menu id="hamburgerMenu"></hamburger-menu>
+  <div ui-view="modal"></div>
+</div>
