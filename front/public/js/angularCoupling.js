@@ -1,4 +1,7 @@
-function ToAngular (argument) {
-	var scope = angular.element(document.getElementById('unityLink')).scope();
-	scope.ToModel(argument);
+function ToAngular(argument) {
+		angular.element(document.getElementById('unityLink')).scope().ToModel(argument);
+};
+
+function GetStartPoint() {
+		angular.element(document.getElementById('unityLink')).scope().getStartPoint();
 };

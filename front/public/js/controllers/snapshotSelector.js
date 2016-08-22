@@ -50,6 +50,7 @@ angular.module('controller.snapshotSelector',['ui.router',])
         };
         $scope.Open = function (id) {
             editorModel.OpenSnapshot(id);
+            $scope.Close();
         };
         $scope.CreateNew = function () {
             snapshotEditorState.new = true;

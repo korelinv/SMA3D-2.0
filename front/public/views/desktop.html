@@ -1,0 +1,57 @@
+<div ng-show="avalibleStartScreens.length == 0"
+  style="position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,50%);
+    transform: translate(-50%,50%);">
+  Нет доступных приложений.
+</div>
+
+<div
+  ng-show="avalibleStartScreens.length > 1"
+  style="
+    position: absolute;
+    top: 72px;
+    left: 50%;
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+    width: 75%;">
+
+  <ul style="
+      width: 100%;
+      list-style: none;
+      margin: 0px;
+      padding: 0px;
+      overflow: hidden;">
+    <li ng-repeat="screen in avalibleStartScreens" style="width: 360px; height: 360px; padding: 18px; float: left;">
+
+      <div style="width: 100%;	height: 100%; position: relative;">
+        <img
+          style="width: 100%;	height: 100%;"
+          src=""
+          ng-click="openScreen(screen.startFrom)">
+        <div
+          ng-show="false"
+          style="width: 100%; height: 100%;"
+          class="display-table">
+          <div
+            ng-click="openScreen(screen.startFrom)"
+            class="display-table-cell" style="text-align: center; vertical-align: middle; color: #e0e0e0; background: #f0f0f0;">
+            изображение отсутствует
+          </div>
+        </div>
+        <div
+          ng-click="openScreen(screen.startFrom)"
+          style="position: absolute; width: calc(75% - 12px); background: #000000; opacity: 0.7; bottom: 0px; right: 0px; padding: 6px; color: #ffffff; text-align: right;">
+          {{screen.name}}
+          <br>
+          {{screen.id}}
+        </div>
+      </div>
+
+
+    </li>
+  </ul>
+
+
+</div>

@@ -29,6 +29,7 @@ angular.module('controller.editUser',['ui.router','service.session','service.use
     $userData.getUser($rootScope.editedUser,$session.current())
     .then((result) => {
         $scope.user = result.data;
+        if (!$scope.user.groups) $scope.user.groups = [];
         $rootScope.editedUser = null;
     })
     .catch((error) => {
@@ -48,7 +49,7 @@ angular.module('controller.editUser',['ui.router','service.session','service.use
             method: 'POST',
             url: "/editUser",
             data: {
-              session: $window.localStorage.getItem('session'),
+              session: $session.current(),
               user: $scope.user
             }
         })

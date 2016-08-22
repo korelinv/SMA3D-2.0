@@ -1,4 +1,4 @@
-angular.module('service.session',['ui.router'])
+angular.module('service.session',[])
     .service('$session', function($window) {
         let $this = this;
         $this.current = function () {
@@ -10,4 +10,4 @@ angular.module('service.session',['ui.router'])
         $this.flush = function() {
           $window.localStorage.removeItem('session');
         };
-    })
+    });

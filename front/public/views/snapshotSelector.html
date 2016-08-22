@@ -1,195 +1,10 @@
-<!--
-<div
-	class="regularForm snapshotSelectorTemplate"
-	style="width: 900px; height: 672px;">
-
-	<div id="window-header">
-		<div class="caption-wrapper">
-			<div class="caption">
-				Информеры
-			</div>
-		</div>
-		<div class="spacer" style="width: 100%;"></div>
-	</div>
-
-	<div style="
-		width: 250px;
-		height: 456px;
-		background: #FFFFFF;
-		float: left;">
-		<div style="
-			height: 32px;
-			display: table-cell;
-			vertical-align: middle;">
-			<span style="
-				font-size: 12pt;
-				padding: 8px;">Категории</span>
-		</div>
-		<div style="
-			width: 100%;
-			height: calc(100% - 32px);
-			overflow: auto;">
-			<button
-				style="
-					width: 100%;
-					height: 48px;
-					border: 0px solid #FFFFFF;
-					background: #FFFFFF;
-					position: relative;"
-				ng-repeat="category in categories"
-				ng-click="selectCategory(category)">
-				{{setCategoryHeader(category)}}
-				<div
-					style="
-						position: absolute;
-						height: 48px;
-						width: 4px;
-						left: 0px;
-						top: 0px;
-						background: #FFD740;"
-					ng-show="selectedCategory == category"></div>
-			</button>
-		</div>
-	</div>
-
-
-
-	<div style="
-		width: calc(100% - 250px);
-		float: left; background: #FFFFFF;">
-
-		<div style="
-			width: 100%;
-			height: 32px;">
-
-			<div style="
-				float: left;
-				margin: 4px;">
-				<span style="font-size: 10pt;">Приложения</span>
-				<input
-					type="checkbox"
-					ng-init="showApps = true"
-					ng-model="showApps"></input>
-				<span style="font-size: 10pt;">Информеры</span>
-				<input
-					type="checkbox"
-					ng-init="showElements = true"
-					ng-model="showElements"></input>
-			</div>
-
-			<div style="
-				float: right;
-				margin: 4px;">
-				<input
-					type="text"
-					style="
-						width: 250px;
-						border: 1px solid #E0E0E0;
-						padding: 4px;
-						margin: 0px;"
-					placeholder="найти"
-					ng-model="searchInput"></input>
-			</div>
-		</div>
-
-		<ul style="
-			width: 100%;
-			height: 424px;
-			list-style: none;
-			margin: 0px;
-			padding: 0px;
-			overflow: auto;">
-			<li
-				style="
-					width: 128px;
-					height: 152px;
-					float: left;
-					padding: 8px;">
-				<div style="
-						width: 112px;
-						height: 112px;
-						margin: 8px;
-						background: #f2f2f2;">
-					<img
-						style="
-							width: 48px;
-							height: 48px;
-							margin: 32px;
-							opacity: 0.2;"
-						src="img/icons/ic_add_circle_black_48dp_1x.png"
-						ng-click="CreateNew()">
-				</div>
-				<div style="
-					width: 128px;
-					height: 24px;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					text-align: center;">
-					<span style="font-size: 10pt;">Новый информер</span>
-				</div>
-			</li>
-
-			<li
-				style="
-					width: 128px;
-					height: 152px;
-					float: left;
-					padding: 8px;"
-				ng-repeat="snapshot in snapshots | filter:{name:searchInput}"
-				ng-if="FitsCategory(snapshot.category,selectedCategory) && FitsType(snapshot.appInpoint,showApps,showElements)">
-				<div style="
-					margin: 8px;
-					position: relative;">
-					<img
-						style="
-							width: 112px;
-							height: 112px;"
-						src="{{snapshot.imgPath}}"
-						ng-click="Open(snapshot.id)">
-					<div style="
-						width: 24px;
-						height: 24px;
-						position: absolute;
-						top: 0;
-						left: 88px;
-						background: #FFD740;">
-						<img
-							style="
-								width: 18px;
-								height: 18px;
-								margin: 3px;"
-							src="img/icons/ic_mode_edit_white_24dp_1x.png"
-							ng-click="Edit(snapshot.id)">
-					</div>
-				</div>
-				<div style="
-					width: 128px;
-					height: 24px;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					text-align: center;">
-					<span style="font-size: 10pt;">{{snapshot.name}}</span>
-				</div>
-			</li>
-		</ul>
-
-	</div>
-
-	<div id="window-footer">
-		<div class="float-right" style="margin-top: 18px; margin-right: 12px;">
-			<pl-button action="Close" caption="Закрыть"><pl-button>
-		</div>
-	</div>
-
-</div>
--->
-
 <div id="snapshot-selector" ng-class="css.window">
 
 	<div class="header display-table">
 		<div class="display-table-cell">
 			<div class="float-left">Элементы</div>
 			<div class="float-right" ng-click="Close()">Назад</div>
+			<div class="float-right" style="padding-right: 8px;" ng-click="CreateNew()">Добавить</div>
 		</div>
 	</div>
 
@@ -203,10 +18,10 @@
 			overflow: hidden;">
 
 			<li
-				style="width: 288px; height: 288px;	float: left;"
+				style="width: 288px; height: 288px;	padding: 8px; float: left;"
 				ng-repeat="snapshot in snapshots | filter:{name:searchInput}"
 				ng-if="FitsCategory(snapshot.category,selectedCategory) && FitsType(snapshot.appInpoint,showApps,showElements)">
-				<div style="width: 100%;	height: 100%; position: relative;">
+				<div style="width: 100%; height: 100%; position: relative;">
 					<img
 						ng-show="SnapshotHasPic(snapshot.imgPath)"
 						style="width: 100%;	height: 100%;"
@@ -216,24 +31,23 @@
 						ng-show="!SnapshotHasPic(snapshot.imgPath)"
 						style="width: 100%; height: 100%;"
 						class="display-table">
-						<div class="display-table-cell" style="text-align: center; vertical-align: middle; color: #e0e0e0; background: #f0f0f0;">
+						<div
+							ng-click="Open(snapshot.id)"
+							class="display-table-cell" style="text-align: center; vertical-align: middle; color: #e0e0e0; background: #f0f0f0;">
 							изображение отсутствует
 						</div>
 					</div>
-					<div style="position: absolute; width: calc(75% - 12px); background: #000000; opacity: 0.7; bottom: 0px; right: 0px; padding: 6px; color: #ffffff; text-align: right;">
+					<div
+						ng-click="Open(snapshot.id)"
+						style="position: absolute; width: calc(100% - 12px); background: #000000; opacity: 0.7; bottom: 0px; left: 0px; padding: 6px; color: #ffffff; text-align: left;">
 						{{snapshot.name}}
 					</div>
+					<div
+						ng-click="Edit(snapshot.id)"
+						style="position: absolute; width: 24px; height: 24px; background: #000000; opacity: 0.7; top: 0px; right: 0px; padding: 3px; color: #ffffff;">
+						<img src="img/icons/ic_create_white_24dp_1x.png" style="width: 24px; height: 24px;">
+					</div>
 				</div>
-				<!--
-				<div style="
-					width: 128px;
-					height: 24px;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					text-align: center;">
-					<span style="font-size: 10pt;">{{snapshot.name}}</span>
-				</div>
-				-->
 			</li>
 		</ul>
 

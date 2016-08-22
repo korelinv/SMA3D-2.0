@@ -29,12 +29,13 @@ Server.prototype.Start = function (__config) {
     });
     return deferred.promise;
   };
+
   function GetUserInfo(login) {
     var deferred = q.defer();
     app.locals.mongoClient.connect(app.locals.appConfig.database, function (error, db) {
       if (error) deferred.reject(error);
       else {
-        db.collection('users').findOne({"login":login}, {_id: 0}, {token: 0}, function (error, result) {
+        db.collection('users').findOne({"login":login}, {_id: 0, token: 0}, function (error, result) {
           db.close();
           if (error) deferred.reject(error);
           else if (result != null) deferred.resolve(result);
@@ -97,7 +98,6 @@ Server.prototype.Start = function (__config) {
   };
   function AuthenticationBySessionKey(key, ip) {
     var result = false;
-    console.log(app.locals.sessions[key] == ip);
     if (app.locals.sessions[key] == ip) {
       result = true;
     };
@@ -347,7 +347,7 @@ Server.prototype.Start = function (__config) {
       });
     }
     else res.status(400).send("<h1>400 Bad request</h1>");
-  })
+  });
 
 
   app.listen(app.locals.appConfig.port, function () {
