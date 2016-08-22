@@ -9,7 +9,13 @@ const app = angular.module('smaWebUI',
 			'service.session',
 
 			'controller.login',
-			'controller.static'
+			'controller.static',
+			'controller.snapshotSelector',
+			'controller.snapshotEditor',
+			'controller.serviceManager',
+			'controller.serviceEditor',
+			'controller.structureEditor',
+			'controller.settingsEditor'
 		])
 
 		.config(function config($stateProvider) {
@@ -31,15 +37,6 @@ const app = angular.module('smaWebUI',
 					      }
 				    }
 				});
-				$stateProvider.state('main.test', {
-						url: '/snapshots',
-						views: {
-								'modal@main' : {
-										controller: 'snapshotSelectorCtrl as snapshotSelector',
-										templateUrl: 'templates/snapshotSelector.html'
-								}
-				    }
-				});
 				$stateProvider.state('main.index', {
 						url: '/playground',
 						views: {
@@ -48,51 +45,76 @@ const app = angular.module('smaWebUI',
 								}
 				    }
 				});
-		/*
-		$stateProvider.state("index", {
-			templateUrl: "templates/index.html"
-		})
-		$stateProvider.state('snapshotSelector', {
-			controller: "snapshotSelectorCtrl as snapshotSelector",
-			templateUrl: "templates/snapshotSelector.html"
-		})
-		$stateProvider.state('snapshotEditor', {
-			controller: "snapshotEditorCtrl as snapshotEditor",
-			templateUrl: "templates/snapshotEditor.html"
-		})
-		$stateProvider.state('serviceManager', {
-			controller: "serviceManagerCtrl as serviceManager",
-			templateUrl: "templates/serviceManager.html"
-		})
-		$stateProvider.state('serviceEditor', {
-			controller: "serviceEditorCtrl as serviceEditor",
-			templateUrl: "templates/serviceEditor.html"
-		})
-		$stateProvider.state('structureEditor', {
-			controller: "structureEditorCtrl as structureEditor",
-			templateUrl: "templates/structureEditor.html"
-		})
-		$stateProvider.state('settingsEditor', {
-			controller: "settingsEditorCtrl as settingsEditor",
-			templateUrl: "templates/settingsEditor.html"
-		})
-		$stateProvider.state('startScreenEditor', {
-			controller: "startScreenEditorCtrl as startScreenEditor",
-			templateUrl: "templates/startScreenEditor.html"
-		})
-		*/
+				$stateProvider.state('main.snapshotSelector', {
+						url: '/snapshots',
+						views: {
+								'modal@main' : {
+										controller: 'snapshotSelectorCtrl as snapshotSelector',
+										templateUrl: 'views/snapshotSelector.html'
+								}
+				    }
+				});
+				$stateProvider.state('main.snapshotEditor', {
+						url: '/snapshot/edit',
+						views: {
+								'modal@main' : {
+										controller: 'snapshotEditorCtrl as snapshotEditor',
+										templateUrl: 'views/snapshotEditor.html'
+								}
+				    }
+				});
+				$stateProvider.state('main.serviceManager', {
+						url: '/services',
+						views: {
+								'modal@main' : {
+										controller: 'serviceManagerCtrl as serviceManager',
+										templateUrl: 'views/serviceManager.html'
+								}
+				    }
+				});
+				$stateProvider.state('main.serviceEditor', {
+						url: '/service/edit',
+						views: {
+								'modal@main' : {
+										controller: 'serviceEditorCtrl as serviceEditor',
+										templateUrl: 'views/serviceEditor.html'
+								}
+				    }
+				});
+				$stateProvider.state('main.structureEditor', {
+						url: '/structure',
+						views: {
+								'modal@main' : {
+										controller: 'structureEditorCtrl as structureEditor',
+										templateUrl: 'views/structureEditor.html'
+								}
+				    }
+				});
+				$stateProvider.state('main.settingsEditor', {
+						url: '/snapshot/settings',
+						views: {
+								'modal@main' : {
+										controller: 'settingsEditorCtrl as settingsEditor',
+										templateUrl: 'views/settingsEditor.html'
+								}
+				    }
+				});
+				$stateProvider.state('main.startScreenEditor', {
+						url: '/managment',
+						views: {
+								'modal@main' : {
+										controller: 'startScreenEditorCtrl as startScreenEditor',
+										templateUrl: 'views/startScreenEditor.html'
+								}
+				    }
+				});
 	})
-
-
-	/*
-	.run(function ($http, editorModel) {
-		editorModel.Start();
-	})
-	*/
 
 	.run(['$state', function($state) {
 		$state.transitionTo('login');
 	}])
+
+
 
 	.directive('unityWebGl', function () {
 		return {
@@ -535,43 +557,27 @@ const app = angular.module('smaWebUI',
 		this.instance = null;
 	})
 
-	/*
-	.controller('loginForm', function ($scope, $http) {
-		$scope.Authorize = function (login,password) {
-			$http({
-				method: 'POST',
-				url: 'http://localhost:8050/endpoints',
-				headers: {},
-				data: {
-					auth: btoa(login + password)
-				}
-			})
-			.then((result) => {console.log(result)})
-			.catch((error) => {console.error(error)})
-		};
-	})
-	*/
 
 	.controller('hamburgerMenu', function ($scope, $state) {
 		$scope.menuItems = [
 			{
 				caption: 'Информеры',
-				state: 'main.test', //snapshotSelector',
+				state: 'main.snapshotSelector',
 				icon: 'img/icons/ic_insert_chart_black_24dp_1x.png'
 			},
 			{
 				caption: 'Сервисы',
-				state: 'serviceManager',
+				state: 'main.serviceManager',
 				icon: 'img/icons/ic_archive_black_24dp_1x.png'
 			},
 			{
 				caption: 'Структура',
-				state: 'structureEditor',
+				state: 'main.structureEditor',
 				icon: 'img/icons/ic_layers_black_24dp_1x.png'
 			},
 			{
 				caption: 'Настройка',
-				state: 'startScreenEditor',
+				state: 'main.startScreenEditor',
 				icon: 'img/icons/ic_layers_black_24dp_1x.png'
 			}
 		];
@@ -588,6 +594,9 @@ const app = angular.module('smaWebUI',
 		$scope.ToModel = unityOut.ResoveCallback;
 	})
 
+
+
+
 	.controller('startScreenEditorCtrl', function($scope, $state, $timeout, dataProvider, editorModel) {
 
 		$scope.css = {
@@ -601,6 +610,7 @@ const app = angular.module('smaWebUI',
 
 	})
 
+	/*
 	.controller('snapshotSelectorCtrl', function ($scope, $state, $timeout, editorModel, snapshotEditorState) {
 
 		$scope.css = {
@@ -706,7 +716,8 @@ const app = angular.module('smaWebUI',
 			$scope.css.window = "fade-out";
 		};
 	})
-
+	*/
+	/*
 	.controller('snapshotEditorCtrl', function ($scope, $state, dataProvider, editorModel, snapshotEditorState) {
 
 		$scope.page = 0;
@@ -855,7 +866,7 @@ const app = angular.module('smaWebUI',
 		$scope.Delete = function () {
 			dataProvider.DeleteSnapshot($scope.snapshot.id)
 			.then(function (result) {
-				$state.go('snapshotSelector');
+				$state.go('main.snapshotSelector');
 			})
 			.catch(function (error) {
 				console.error(error);
@@ -863,7 +874,8 @@ const app = angular.module('smaWebUI',
 		};
 
 	})
-
+	*/
+	/*
 	.controller('serviceManagerCtrl', function ($scope, $state, editorModel, serviceEditorState, dataProvider) {
 
 		Update();
@@ -881,13 +893,13 @@ const app = angular.module('smaWebUI',
 
 		$scope.CreateNew = function () {
 			serviceEditorState.new = true;
-			$state.go('serviceEditor');
+			$state.go('main.serviceEditor');
 		};
 
 		$scope.Edit = function (id) {
 			serviceEditorState.new = false;
 			serviceEditorState.id = id;
-			$state.go('serviceEditor');
+			$state.go('main.serviceEditor');
 		};
 
 		$scope.Delete = function (id) {
@@ -896,11 +908,12 @@ const app = angular.module('smaWebUI',
 		};
 
 		$scope.Close = function () {
-			$state.go('index');
+			$state.go('main.index');
 		};
 
 	})
-
+	*/
+	/*
 	.controller('serviceEditorCtrl', function ($scope, $state, serviceEditorState, dataProvider) {
 
 		function newReflection (st, cl) {
@@ -1176,7 +1189,7 @@ const app = angular.module('smaWebUI',
 		$scope.Save = function () {
 			dataProvider.SaveDescriptor($scope.descriptor)
 			.then(function (result) {
-				$state.go('serviceManager');
+				$state.go('main.serviceManager');
 			})
 			.catch(function (error) {
 				console.error(error);
@@ -1184,11 +1197,12 @@ const app = angular.module('smaWebUI',
 		};
 
 		$scope.Close = function () {
-			$state.go('serviceManager');
+			$state.go('main.serviceManager');
 		};
 
 	})
-
+*/
+/*
 	.controller('structureEditorCtrl', function ($scope, $state, settingsEditorState, editorModel, dataProvider) {
 
 		$scope.head;
@@ -1218,7 +1232,7 @@ const app = angular.module('smaWebUI',
 		$scope.Edit = function (element) {
 			settingsEditorState.id = element.id;
 			settingsEditorState.instance = element.instanceID;
-			$state.go('settingsEditor');
+			$state.go('main.settingsEditor');
 		};
 
 		$scope.OpenAddingDialog = function (parent) {
@@ -1338,10 +1352,11 @@ const app = angular.module('smaWebUI',
 		};
 
 		$scope.Close = function () {
-			$state.go('index');
+			$state.go('main.index');
 		};
 	})
-
+*/
+/*
 	.controller('settingsEditorCtrl', function ($scope, $state, settingsEditorState, editorModel, dataProvider) {
 
 		$scope.instance = settingsEditorState.instance;
@@ -1760,7 +1775,8 @@ const app = angular.module('smaWebUI',
  		$scope.Close = function () {
 			settingsEditorState.id = null;
 			settingsEditorState.instance = null;
-			$state.go('structureEditor');
+			$state.go('main.structureEditor');
 		};
 
 	})
+*/
