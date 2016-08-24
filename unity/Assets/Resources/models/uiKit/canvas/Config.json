@@ -1,0 +1,37 @@
+{
+  "id": "models/uiKit/canvas/Canvas",
+  "name": "Канвас",
+  "icon": "",
+  "info": "канвас для UI элементов",
+  "defaults": {
+    "settings": {
+      "dataset":"",
+      "variables": [
+        {
+          "id":"sortOrder",
+          "name":"порядок отображение",
+          "value": 0,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@int",
+          "__type":"SMA.system.Variable"
+        },
+        {
+          "id":"scaleFactor",
+          "name":"мультипликатор масштаба",
+          "value": 1,
+          "protect":true,
+          "pass":false,
+          "native":true,
+          "type":"@float",
+          "__type":"SMA.system.Variable"
+        }
+      ],
+      "fields": [],
+      "actions": [],
+      "modificators": [],
+      "__type": "SMA.system.ViewSettings"
+    }
+  }
+}

@@ -588,11 +588,6 @@ const app = angular.module('smaWebUI',
 				caption: 'Структура',
 				state: 'main.structureEditor',
 				icon: 'img/icons/ic_layers_black_24dp_1x.png'
-			},
-			{
-				caption: 'Настройка',
-				state: 'main.startScreenEditor',
-				icon: 'img/icons/ic_layers_black_24dp_1x.png'
 			}
 		];
 		$scope.unfolded = false;
@@ -610,20 +605,4 @@ const app = angular.module('smaWebUI',
 				console.log($startpoint.current());
 				SendMessage('WebCoupling','KickstartFromPoint', $startpoint.current());
 		};
-	})
-
-
-
-
-	.controller('startScreenEditorCtrl', function($scope, $state, $timeout, dataProvider, editorModel) {
-
-		$scope.css = {
-			window: "fade-in"
-		};
-
-		$scope.Close = function () {
-			$timeout(function () {$state.go('index')}, 400);
-			$scope.css.window = "fade-out";
-		};
-
 	})

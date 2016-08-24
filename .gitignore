@@ -1,2 +1,13 @@
 node_modules/
 front/public/Release
+
+
+unity/Library
+unity/ProjectSettings
+unity/SMA 2.0.CSharp.csproj
+unity/SMA 2.0.sln
+unity/SMA 2.0.userprefs
+unity/Assets/**/.meta
+unity/Assets/**/*.prefab
+unity/Assets/**/*.ttf
+unity/Assets/**/*.unity
