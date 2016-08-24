@@ -11,4 +11,7 @@ unity/Assets/**/*.ttf
 
 *.meta
 *.prefab
+*.prefab.meta
 *.unity
+*.mat
+*.mat.meta
