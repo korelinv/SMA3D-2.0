@@ -1,5 +1,5 @@
 angular.module('controller.newGroup',['ui.router','service.session','service.snapshots'])
-.controller('newGroupFormCtrl', function($scope, $state, $http, $window, $session, $snapshots) {
+.controller('newGroupFormCtrl', function($scope, $state, $http, $session, $snapshots) {
     $scope.newGroup = {
         id: "",
         name: "",

@@ -1,0 +1,47 @@
+<div
+  e2e="component-dropdown"
+  e2e-folded="{{unfolded}}"
+  e2e-value="{{model.$modelValue}}"
+  e2e-text="{{filterValue}}"
+  style="position: relative;">
+  <div style="position: absolute;">
+    <div>
+      <input
+        type="text"
+        hidden
+        ng-model="model"
+        e2e="model">
+      <input
+        class="input"
+        type="text"
+        placeholder="выберите группу"
+        ng-model="filterValue"
+        ng-change="Unfold()"
+        e2e-text="input"
+        ng-disabled="!cpMode">
+      <input
+        type="button"
+        class="button"
+        ng-click="SwitchFold()"
+        ng-hide="!cpMode"
+        value="^"
+        e2e="dropdown-unfold">
+    </div>
+
+    <div
+      ng-show="unfolded"
+      e2e="dropdown-list"
+      style="postion: absolute; top: 0; left: 0; height: 192px; overflow: auto;">
+      <ul style="list-style: none; padding: 0px; margin: 0px;">
+        <li ng-repeat="element in dropdownOptions | filter:filterBy">
+          <span
+            ng-click="Select(element)"
+            e2e="dropdown-option"
+            e2e-value="{{element.name}}">
+            {{element.name}}
+          </span>
+        </li>
+      </ul>
+    <div>
+  </div>
+</div>

@@ -2,11 +2,13 @@ const app = angular.module('app',
     ['ui.router',
 
     'directive.sideMenu',
+    'directive.dropdown',
 
     'service.session',
     'service.userData',
     'service.snapshots',
 
+    'service.groups',
 
     'controller.login',
     'controller.static',
@@ -15,7 +17,8 @@ const app = angular.module('app',
     'controller.editUser',
     'controller.logs',
     'controller.groups',
-    'controller.newGroup'
+    'controller.newGroup',
+    'controller.editGroup'
     ])
 
   .config(function config($stateProvider) {
@@ -96,7 +99,7 @@ const app = angular.module('app',
       }
     });
     $stateProvider.state('newGroup', {
-      url: "/newgroup",
+      url: "/group/new",
       views : {
         "main" : {
           controller: "staticCtrl as static",
@@ -105,6 +108,19 @@ const app = angular.module('app',
         "content" : {
           controller: "newGroupFormCtrl as newGroupForm",
           templateUrl: "views/newGroupForm.html"
+        }
+      }
+    });
+    $stateProvider.state('editGroup', {
+      url: "/group/:id",
+      views : {
+        "main" : {
+          controller: "staticCtrl as static",
+          templateUrl: "views/static.html"
+        },
+        "content" : {
+          controller: "editGroupFormCtrl as editGroupForm",
+          templateUrl: "views/editGroupForm.html"
         }
       }
     });

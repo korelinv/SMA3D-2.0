@@ -11,10 +11,18 @@
     </div>
   </div>
 
+  <table>
+    <tr>
+      <th>Название</th>
+      <th>Идентификатор</th>
+      <th>Стартовый элемент</th>
+    </tr>
+    <tr ng-repeat="group in groups">
+      <td>{{group.name}}</td>
+      <td><a ui-sref="editGroup({id: group.id})">{{group.id}}</a></td>
+      <td>{{group.startFrom}}</td>
+    <tr>
+  </table>
 
-  <ul>
-    <li ng-repeat="group in groups">
-      {{group.name}}
-    </li>
-  </ul>
+
 </div>

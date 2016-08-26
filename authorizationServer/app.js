@@ -117,6 +117,22 @@ Server.prototype.Start = function (__config) {
     });
     return deferred.promise;
   };
+
+  function GetGroup(id) {
+    var deferred = q.defer();
+    app.locals.mongoClient.connect(app.locals.appConfig.database, function (error, db) {
+      if (error) deferred.reject(error);
+      else {
+        db.collection('groups').findOne({"id": id}, {"_id":0}, function (error, result) {
+          db.close();
+          if (error) deferred.reject(error);
+          else deferred.resolve(result);
+        });
+      };
+    });
+    return deferred.promise;
+  };
+
   function GetGroupsList() {
     var deferred = q.defer();
     app.locals.mongoClient.connect(app.locals.appConfig.database, function (error, db) {
@@ -349,6 +365,18 @@ Server.prototype.Start = function (__config) {
     else res.status(400).send("<h1>400 Bad request</h1>");
   });
 
+  app.post('/group', function(req, res) {
+    var data = req.body;
+    if (data.id && data.session && AuthenticationBySessionKey(data.session,req.ip)) {
+      GetGroup(data.id)
+      .then((result) => {res.status(200).send(result)})
+      .catch((error) => {
+        if (error) res.send(error);
+        else res.status(401).send();
+      });
+    }
+    else res.status(400).send("<h1>400 Bad request</h1>");
+  });
 
   app.listen(app.locals.appConfig.port, function () {
     console.log("["+app.locals.appConfig.instance+"] >> started server on port "+app.locals.appConfig.port);
