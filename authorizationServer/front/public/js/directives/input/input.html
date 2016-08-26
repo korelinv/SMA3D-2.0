@@ -1,0 +1,20 @@
+<div
+  ng-style="style.wrapper"
+  e2e="component-input"
+  e2e-value="{{model}}"
+  e2e-text="{{model}}">
+
+  <div ng-style="style.container">
+    <div ng-style="style.input.wrapper">
+      <input
+        type="{{type}}"
+        placeholder="{{placeholder}}"
+        ng-style="style.input.input"
+        ng-model="model"
+        ng-disabled="!cpMode"
+        e2e-model
+        e2e-input>
+    </div>
+  </div>
+
+</div>

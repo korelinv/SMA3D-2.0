@@ -17,13 +17,16 @@
 
     - placeholder (optional): sets input placeholder
 
-    cpMode options: if ==true component is in edit mode, if ==false component is in view only mode
+    cpMode: if ==true component is in edit mode, if ==false component is in view only mode
+
+    cpStyle: component stylesheet (when redifined overrides all default styles)
 */
 
 angular.module('directive.dropdown',[])
 
     .directive('dropdown', function() {
 
+        //default styles (minimal required)
         let height = 24;
         let width = 256;
         let fontSize = 12;
@@ -32,74 +35,68 @@ angular.module('directive.dropdown',[])
         let dropdownSize = 10;
 
         let style = {
-
             caretLink: '',
-
             warpper: {
-              'position' : 'relative'
+                'position' : 'relative'
             },
             container: {
-              'position' : 'absolute',
-              'height' : height + 'px',
-              'width': width + 'px',
-              'border': '1px solid rgb(219, 219, 219)',
-              'border-radius': '2px'
+                'position' : 'absolute',
+                'height' : height + 'px',
+                'width': width + 'px',
+                'border': '1px solid rgb(219, 219, 219)',
+                'border-radius': '2px'
             },
-
             input: {
-              wrapper: {
-                'float' : 'left'
-              },
-              input: {
-                'border': '0px solid rgb(255, 255, 255)',
-                'margin': '0px',
-                'width': (width - height - 8) + 'px',
-                'height': height + 'px',
-                'font-size': fontSize + 'pt',
-                'margin' : '0px',
-                'padding-left': '4px',
-                'padding-right': '4px',
-                'padding-top': '0px',
-                'padding-bottom': '0px',
-              }
+                wrapper: {
+                    'float' : 'left'
+                },
+                input: {
+                    'border': '0px solid rgb(255, 255, 255)',
+                    'margin': '0px',
+                    'width': (width - height - 8) + 'px',
+                    'height': height + 'px',
+                    'font-size': fontSize + 'pt',
+                    'margin' : '0px',
+                    'padding-left': '4px',
+                    'padding-right': '4px',
+                    'padding-top': '0px',
+                    'padding-bottom': '0px'
+                }
             },
             caret: {
-              'float': 'left',
-              'width': height+'px',
-              'height': height+'px',
-              'cursor': 'pointer'
-            },
-
-            dropdown: {
-              wrapper: {
-                'position': 'absolute',
-                'top': height + 'px',
-                'left': 0,
-                'max-height': optionHeight * dropdownSize +'px',
-                'min-width': width +'px',
-                'border': '1px solid rgb(101, 195, 255)',
-                'border-radius': '2px',
-                'overflow-y': 'auto',
-                'overflow-x': 'hidden',
-                'box-shadow': '2px 2px 8px 4px rgba(196,196,196,0.3)'
-              },
-              list: {
-                'list-style': 'none',
-                'padding-left': '8px',
-                'padding-right': '4px',
-                'padding-top': '4px',
-                'padding-bottom': '4px',
-                'margin': '0px'
-              },
-              item: {
-                'height': optionHeight+'px',
-                'font-size': optionFontSize+'pt',
-                'white-space': 'nowrap',
+                'float': 'left',
+                'width': height+'px',
+                'height': height+'px',
                 'cursor': 'pointer'
-              }
+            },
+            dropdown: {
+                wrapper: {
+                    'position': 'absolute',
+                    'top': height + 'px',
+                    'left': 0,
+                    'max-height': optionHeight * dropdownSize +'px',
+                    'min-width': width +'px',
+                    'border': '1px solid rgb(101, 195, 255)',
+                    'border-radius': '2px',
+                    'overflow-y': 'auto',
+                    'overflow-x': 'hidden',
+                    'box-shadow': '2px 2px 8px 4px rgba(196,196,196,0.3)'
+                },
+                list: {
+                    'list-style': 'none',
+                    'padding-left': '8px',
+                    'padding-right': '4px',
+                    'padding-top': '4px',
+                    'padding-bottom': '4px',
+                    'margin': '0px'
+                },
+                item: {
+                    'height': optionHeight+'px',
+                    'font-size': optionFontSize+'pt',
+                    'white-space': 'nowrap',
+                    'cursor': 'pointer'
+                }
             }
-
-
         };
 
         return {
@@ -107,12 +104,14 @@ angular.module('directive.dropdown',[])
             require: 'ngModel',
             scope: {
                 cpConfig: '=',
-                cpMode: '='
+                cpMode: '=',
+                cpStyle: '='
             },
             templateUrl: 'js/directives/dropdown/dropdown.html',
-            controller: function($element, $scope, $http) {
+            controller: function($element, $scope) {
 
-                $scope.style = style;
+                if ($scope.cpStyle) $scope.style = $scope.cpStyle;
+                else $scope.style = style;
 
                 $scope.model = $element.controller('ngModel');
                 $scope.unfolded = false;

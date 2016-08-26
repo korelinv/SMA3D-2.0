@@ -9,6 +9,10 @@ angular.module('controller.editGroup',['ui.router', 'service.session','service.s
         $scope.avalibleSnapshots = [];
         $scope.edit = false;
         $scope.snapshotName;
+
+        $scope.nameConfig = {
+            type: 'text'
+        }
         $scope.startFromConfig = {
             source: {
                 request: $snapshots.getSnapshots,
