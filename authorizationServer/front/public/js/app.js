@@ -3,6 +3,7 @@ const app = angular.module('app',
 
     'directive.sideMenu',
     'directive.dropdown',
+    'directive.input',
 
     'service.session',
     'service.userData',

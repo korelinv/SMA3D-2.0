@@ -56,6 +56,8 @@
           <div class="validation-v-text" ng-show="form.gid.$error.required">обязательное поле</div>
         </div>
       </div>
+
+      <!--
       <div class="padding-top-regular padding-bottom-regular">
         <span>Название</span>
         <input
@@ -69,55 +71,25 @@
           <div class="validation-v-text" ng-show="form.gname.$error.required">обязательное поле</div>
         </div>
       </div>
+      -->
 
-      {{newGroup.startFrom}}
-      <dropdown
-        ng-model="newGroup.startFrom"
-        cp-config="startFromConfig"
-        cp-mode="true">
-      </dropdown>
-      <!--
+      <div class="padding-top-regular padding-bottom-regular">
+        <span>Название</span>
+        {{newGroup.name}}
+        <regular-input
+          ng-model="newGroup.name"
+          cp-config="nameConfig"
+          cp-mode="true"></regular-input>
+      </div>
+
       <div class="padding-top-regular padding-bottom-regular">
         <span>Стартовый информер</span>
-
-        <div style="position: relative;">
-          <div style="position: absolute;">
-            {{snapshotName}}
-            <div>
-              <input
-                type="text"
-                name="gstartFrom"
-                hidden
-                ng-model="newGroup.startFrom"
-                required>
-              <input
-                ng-init="drop = false;"
-                class="input"
-                type="text"
-                placeholder="выберите группу"
-                ng-model="snapshotName"
-                ng-change="drop = true;">
-              <input type="button" class="button" ng-click="drop = !drop;" value="^">
-            </div>
-
-            <div
-              ng-show="drop"
-              style="postion: absolute; top: 0; left: 0; height: 192px; overflow: auto;">
-              <ul style="list-style: none; padding: 0px; margin: 0px;">
-                <li ng-repeat="element in avalibleSnapshots | filter:{name:snapshotName}">
-                  <span ng-click="SetStartingSnapshot(element.id)">
-                    {{element.name}}
-                  </span>
-                </li>
-              </ul>
-            <div>
-          </div>
-        </div>
-        <div ng-show="form.$submitted">
-          <div class="validation-v-text" ng-show="form.gstartFrom.$error.required">обязательное поле</div>
-        </div>
+        <dropdown
+          ng-model="newGroup.startFrom"
+          cp-config="startFromConfig"
+          cp-mode="true">
+        </dropdown>
       </div>
-      -->
 
       <div class="padding-top-large padding-bottom-regular height-medium">
         <input type="button" class="button float-right" ng-click="GoBack()" value="Отменить">

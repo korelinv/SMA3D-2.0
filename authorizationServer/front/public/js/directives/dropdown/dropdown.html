@@ -10,7 +10,7 @@
         type="text"
         hidden
         ng-model="model"
-        e2e="model">
+        e2e-model>
       <input
         type="text"
         placeholder="{{placeholder}}"
@@ -18,7 +18,7 @@
         ng-model="filterValue"
         ng-change="Unfold()"
         ng-disabled="!cpMode"
-        e2e-text="input">
+        e2e-input>
     </div>
 
     <img
@@ -27,7 +27,7 @@
       ng-click="SwitchFold()"
       ng-hide="!cpMode"
       ng-src="style.caretLink"
-      e2e="dropdown-unfold">
+      e2e-button="unfold">
 
     <div
       ng-show="unfolded"
