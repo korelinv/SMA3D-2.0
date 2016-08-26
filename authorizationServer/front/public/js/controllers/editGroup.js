@@ -23,7 +23,8 @@ angular.module('controller.editGroup',['ui.router', 'service.session','service.s
             },
             selector: {
                 field: 'id'
-            }
+            },
+            placeholder: 'выберите группу'
         };
 
 
@@ -33,16 +34,6 @@ angular.module('controller.editGroup',['ui.router', 'service.session','service.s
 
         $scope.Edit = function() {
             $scope.edit = true;
-        };
-        $scope.findSnapshot = function(id) {
-            let result = null;
-            for (let index = 0; index < $scope.avalibleSnapshots.length; index++) {
-                if ($scope.avalibleSnapshots[index].id == id) {
-                    result = $scope.avalibleSnapshots[index].name;
-                    break;
-                };
-            };
-            return result;
         };
 
 
@@ -67,6 +58,7 @@ angular.module('controller.editGroup',['ui.router', 'service.session','service.s
                 .catch((error) => {console.error(error)})
             }
         };
+
         $scope.GoBack = function () {
             $state.go('groups');
         };

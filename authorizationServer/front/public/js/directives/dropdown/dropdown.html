@@ -1,45 +1,51 @@
 <div
+  ng-style="style.wrapper"
   e2e="component-dropdown"
   e2e-folded="{{unfolded}}"
   e2e-value="{{model.$modelValue}}"
-  e2e-text="{{filterValue}}"
-  style="position: relative;">
-  <div style="position: absolute;">
-    <div>
+  e2e-text="{{filterValue}}">
+  <div ng-style="style.container">
+    <div ng-style="style.input.wrapper">
       <input
         type="text"
         hidden
         ng-model="model"
         e2e="model">
       <input
-        class="input"
         type="text"
-        placeholder="выберите группу"
+        placeholder="{{placeholder}}"
+        ng-style="style.input.input"
         ng-model="filterValue"
         ng-change="Unfold()"
-        e2e-text="input"
-        ng-disabled="!cpMode">
-      <input
-        type="button"
-        class="button"
-        ng-click="SwitchFold()"
-        ng-hide="!cpMode"
-        value="^"
-        e2e="dropdown-unfold">
+        ng-disabled="!cpMode"
+        e2e-text="input">
     </div>
+
+    <img
+      type="button"
+      ng-style="style.caret"
+      ng-click="SwitchFold()"
+      ng-hide="!cpMode"
+      ng-src="style.caretLink"
+      e2e="dropdown-unfold">
 
     <div
       ng-show="unfolded"
-      e2e="dropdown-list"
-      style="postion: absolute; top: 0; left: 0; height: 192px; overflow: auto;">
-      <ul style="list-style: none; padding: 0px; margin: 0px;">
-        <li ng-repeat="element in dropdownOptions | filter:filterBy">
+      ng-style="style.dropdown.wrapper"
+      e2e="dropdown-list">
+      <ul ng-style="style.dropdown.list">
+        <li
+          ng-repeat="element in dropdownOptions | filter:filterBy as filtered"
+          ng-style="style.dropdown.item">
           <span
             ng-click="Select(element)"
             e2e="dropdown-option"
             e2e-value="{{element.name}}">
             {{element.name}}
           </span>
+        </li>
+        <li ng-show="filtered.length == 0" ng-style="style.dropdown.item">
+          <span e2e="dropdown-noresult">поиск не дал результатов</span>
         </li>
       </ul>
     <div>
