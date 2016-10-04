@@ -611,11 +611,13 @@ var ls0 = LiveServer.Start({
   "port": 8030,
   "descriptor_service": "http://localhost:8090/descriptor"
 });
+
+/*
 var is0 = ImageServer.Start({
   "instance" : "IMGS_0",
   "port": 8040
 });
-
+*/
 
 var auth = AuthorizationServer.Start({
   "instance" : "AUTH",

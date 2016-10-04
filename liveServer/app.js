@@ -1,33 +1,30 @@
-var express = require('express');
-var request = require('request');
-var bodyparser = require('body-parser');
-var querystring = require('querystring');
-var parseString = require('xml2js').parseString;
-var q = require('q');
+'use strict';
+
+const express = require('express');
+const request = require('request');
+const bodyparser = require('body-parser');
+const querystring = require('querystring');
+const parseString = require('xml2js').parseString;
+const q = require('q');
+const config = require('./config.json');
+
+const server = function () {
 
 
-var Server = function () {};
-
-Server.prototype.Start = function (__config) {
-  var app = express();
-
-  app.locals.appConfig = null;
-
-  if (__config) app.locals.appConfig = __config;
-
+  const app = express();
 
   function RequestDescriptor(__id) {
     var deferred = q.defer();
     var parameters = {
       "method": "GET",
-      "url": app.locals.appConfig.descriptor_service+"?id="+__id,
+      "url": config.descriptor_service+"?id="+__id,
       "headers": {
         "auth": "some"
       }
     };
     request.get(parameters, function (error, response, body) {
-      if (error) deferred.reject(FormErrorStack(app.locals.appConfig.instance,RequestDescriptor,error));
-      else if (response.statusCode != 200) deferred.reject(FormErrorStack(app.locals.appConfig.instance,RequestDescriptor,"response.statusCode=" + response.statusCode));
+      if (error) deferred.reject(FormErrorStack(config.instance,RequestDescriptor,error));
+      else if (response.statusCode != 200) deferred.reject(FormErrorStack(config.instance,RequestDescriptor,"response.statusCode=" + response.statusCode));
       else deferred.resolve(JSON.parse(body));
     });
     return deferred.promise;
@@ -94,9 +91,9 @@ Server.prototype.Start = function (__config) {
         // !refactor сделать нормально определение типа контента
         if (response.headers['content-type'].search('application/xml') != -1) deferred.resolve(body);
         else if (response.headers['content-type'].search('application/json') != -1) {}
-        else deferred.reject(FormErrorStack(app.locals.appConfig.instance,RequestRawCollection,"415 Unsupported media type"))
+        else deferred.reject(FormErrorStack(config.instance,RequestRawCollection,"415 Unsupported media type"))
       }
-      else deferred.reject(FormErrorStack(app.locals.appConfig.instance,RequestRawCollection,"406 Not acceptable"));
+      else deferred.reject(FormErrorStack(config.instance,RequestRawCollection,"406 Not acceptable"));
     });
     return deferred.promise;
   };
@@ -277,6 +274,7 @@ Server.prototype.Start = function (__config) {
   app.use(bodyparser.json());
 
   app.post("/live/:type", function (req, res) {
+
     var __type = req.params.type;
     var __request = req.body;
 
@@ -305,7 +303,7 @@ Server.prototype.Start = function (__config) {
         res.status(200).send(result);
       })
       .catch((error) => {
-        AppendErrorStack(error,app.locals.appConfig.instance,app.post);
+        AppendErrorStack(error,config.instance,app.post);
         console.log(error);
         res.status(500).send("<h1>500 Internal server error</h1>");
       });
@@ -314,11 +312,11 @@ Server.prototype.Start = function (__config) {
 
   });
 
-  app.listen(app.locals.appConfig.port, function () {
-    console.log("["+app.locals.appConfig.instance+"] >> started live server on port "+app.locals.appConfig.port);
+  app.listen(config.port, function () {
+    console.log("["+config.instance+"] >> started live server on port "+config.port);
   });
 
   return app;
 };
 
-module.exports = new Server();
+module.exports = new server();

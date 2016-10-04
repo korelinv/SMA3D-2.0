@@ -4,7 +4,7 @@
   "description": "sma backend",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node starter.js"
   },
   "author": "korelinvi proitr",
   "license": "ISC",

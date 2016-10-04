@@ -1,5 +1,5 @@
 {
-  "instance": "Live Server",
-  "port": 8020,
-  "descriptor_service": "http://localhost:8080/descriptor"
+  "instance": "LS_0",
+  "port": 8030,
+  "descriptor_service": "http://localhost:8090/descriptor"
 }

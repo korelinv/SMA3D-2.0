@@ -1,0 +1,8 @@
+{
+    "instance" : "AUTH",
+    "port" : 8050,
+    "database": "mongodb://localhost:27017/authorization",
+    "apiEndpoints" : {
+        "snapshots": "http://localhost:8090/snapshot"
+    }
+}
