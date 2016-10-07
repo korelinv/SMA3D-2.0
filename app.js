@@ -4,18 +4,18 @@ var path = require('path');
 var mongodb = require('mongodb');
 var bodyparser = require('body-parser');
 var guid = require('uuid-lib');
-var schedule = require('node-schedule');
+//var schedule = require('node-schedule');
 var querystring = require('querystring');
 var request = require('request');
-var parseString = require('xml2js').parseString;
+//var parseString = require('xml2js').parseString;
 var q = require('q');
 
 
 
-var CacheServer = require('./cacheServer/app.js');
+//var CacheServer = require('./cacheServer/app.js');
 var LiveServer = require('./liveServer/app.js');
-var ImageServer = require('./imageServer/app.js');
-var AuthorizationServer = require('./authorizationServer/app.js');
+//var ImageServer = require('./imageServer/app.js');
+//var AuthorizationServer = require('./authorizationServer/app.js');
 
 
 var app = express();
@@ -618,7 +618,7 @@ var is0 = ImageServer.Start({
   "port": 8040
 });
 */
-
+/*
 var auth = AuthorizationServer.Start({
   "instance" : "AUTH",
   "port" : 8050,
@@ -627,3 +627,4 @@ var auth = AuthorizationServer.Start({
     "snapshots": "http://localhost:8090/snapshot"
   }
 });
+*/

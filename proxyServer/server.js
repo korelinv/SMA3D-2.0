@@ -21,16 +21,19 @@ const bodyparser = require('body-parser');
 const request = require('request');
 const config = require('./config.json');
 
-const server = function() {
+const wrapper = function() {
 
-    const app = express();
+    const server = express();
 
-    app.use(cors());
-    app.use(bodyparser.urlencoded({ extended: true }));
-    app.use(bodyparser.json());
+    server.use(cors());
+    server.use(bodyparser.urlencoded({ extended: true }));
+    server.use(bodyparser.json());
 
+    server.listen(config.port, function () {
+        console.log('proxy server started successfully');
+    });
 
-    app.get("/proxy", function (req, res) {
+    server.get("/proxy", function (req, res) {
         req.pipe(request(req.query.url))
         .on("error", (error) => {
             res.status(500).send("<h1>500 Internal server error</h1><br>" + error);
@@ -38,10 +41,6 @@ const server = function() {
         .pipe(res);
     });
 
-    app.listen(config.port, function () {
-        console.log('proxy server started successfully');
-    });
-
 };
 
-module.eports = new server();
+module.eports = new wrapper();
