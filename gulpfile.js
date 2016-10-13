@@ -14,7 +14,7 @@ gulp.task('auth-server-object', function() {
             './authorizationServer/back/api/*.js'
         ])
         .pipe(concat('_temp_module.js'))
-        .pipe(insert.wrap('const wrapper = function() {\n','}\n\nmodule.exports = new wrapper();'))
+        .pipe(insert.wrap('const wrapper = function() {\n','};\n\nmodule.exports = new wrapper();'))
         .pipe(gulp.dest('./authorizationServer/temp/'));
 });
 
@@ -46,7 +46,7 @@ gulp.task('main-server-object', function() {
             './mainServer/back/api/*.js'
         ])
         .pipe(concat('_temp_module.js'))
-        .pipe(insert.wrap('const wrapper = function() {\n','}\n\nmodule.exports = new wrapper();'))
+        .pipe(insert.wrap('const wrapper = function() {\n','};\n\nmodule.exports = new wrapper();'))
         .pipe(gulp.dest('./mainServer/temp/'));
 });
 

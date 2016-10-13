@@ -10,10 +10,14 @@ server.use(router);
 server.use(express.static(path.join(__dirname, '/front/public')));
 server.use(express.static(path.join(__dirname, '/adminConsole/front/public')));
 
+server.get('/admin', function(req, res) {
+    res.sendFile(path.join(__dirname + '/adminConsole/front/index.html'));
+});
+
 server.get('', function(req, res) {
     res.sendFile(path.join(__dirname + '/front/index.html'));
 });
 
 server.listen(config.port, function () {
-    console.log('Main server started on port '+port);
+    console.log('Main server started on port '+config.port);
 });
